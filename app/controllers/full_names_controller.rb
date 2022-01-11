@@ -1,0 +1,2 @@
+class FullNamesController < ApplicationController
+end
