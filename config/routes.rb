@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :favorite_teams
+  resources :favorite_players
+  resources :users
   resources :nba_teams
   resources :players
    get '/hello', to: 'application#hello_world'
