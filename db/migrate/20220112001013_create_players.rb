@@ -1,6 +1,7 @@
-class CreateFullNames < ActiveRecord::Migration[6.1]
+class CreatePlayers < ActiveRecord::Migration[6.1]
   def change
-    create_table :full_names do |t|
+    create_table :players do |t|
+      t.string :full_name
       t.string :team
       t.string :position
       t.float :age
