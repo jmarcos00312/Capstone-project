@@ -7,4 +7,5 @@ class UserSerializer < ActiveModel::Serializer
              :email,
              :favorite_player,
              :favorite_team
+  has_many :comments
 end

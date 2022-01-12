@@ -27,6 +27,13 @@ class PlayersController < ApplicationController
     puts 'deleted'
   end
 
+  def addLiketoPlayer
+    player = find_players
+    player.update(likeCount: player.likeCount + 1)
+    render json: player
+  end
+
+
   private
 
   def find_players

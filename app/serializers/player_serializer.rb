@@ -26,6 +26,7 @@ class PlayerSerializer < ActiveModel::Serializer
              :fta,
              :ftp,
              :orb,
-             :drb
-  has_many :user_rosters
+             :drb,
+             :likeCount
+  has_many :comments
 end
