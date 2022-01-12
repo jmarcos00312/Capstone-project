@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :user_rosters
+  resources :likes
+  resources :comments
   resources :favorite_teams
   resources :favorite_players
   resources :users

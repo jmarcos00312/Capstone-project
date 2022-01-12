@@ -1,39 +1,42 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
 require 'csv'
 Player.destroy_all
 NbaTeam.destroy_all
 
 puts 'seeding players'
-csv_text = File.read('lib/tasks/seed/twentyOne.csv')
+csv_text = File.read('lib/tasks/seed/twentyOne_players.csv')
 csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
 csv.each do |t|
   Player.create(
     {
       full_name: t['full_name'],
-      team: t['team'],
-      position: t['position'],
+      pos: t['pos'],
       age: t['age'],
-      gp: t['gp'],
+      team: t['team'],
+      games: t['games'],
+      games_started: t['games_started'],
       mpg: t['mpg'],
-      FTa: t['fta'],
-      FTper: t['ftper'],
-      twoPA: t['twopA'],
-      twoPer: t['twoPer'],
-      threePa: t['threepA'],
-      threePer: t['threePer'],
-      ppg: t['ppg'],
+      fg: t['fg'],
+      fga: t['fga'],
+      fgp: t['fgp'],
+      threeP: t['threeP'],
+      threePA: t['threePA'],
+      twoP: t['twoP'],
+      twoPP: t['twoPP'],
+      efg: t['efg'],
+      ft: t['ft'],
+      fta: t['fta'],
+      ftp: t['ftp'],
+      orb: t['orb'],
+      drb: t['drb'],
       rpg: t['rpg'],
       apg: t['apg'],
       spg: t['spg'],
       bpg: t['bpg'],
-      topg: t['topg'],
-      versatilityIndex: t['versatilityIndex']
+      tpg: t['tpg'],
+      fouls: t['fouls'],
+      ppg: t['ppg'],
+      threePP: t['threePP']
     },
   )
 end
@@ -70,3 +73,13 @@ NbaTeam.create(name:"San Antonio Spurs", team_abbr: "SAS")
 NbaTeam.create(name:"Toronto Raptors", team_abbr: "TOR")
 NbaTeam.create(name:"Utah Jazz", team_abbr: "UTA")
 NbaTeam.create(name:"Washington Wizards", team_abbr: "Was")
+
+puts "creating users"
+
+User.create(
+  first_name: "Jeremiah", 
+  last_name: "Marcos", 
+  username: "jmarcos", 
+  password_digest: BCrypt::Password.create('jeremiah01'), 
+  email: 'jeremiah@gmail.com',
+)

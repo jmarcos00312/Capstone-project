@@ -1,3 +1,32 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :full_name, :team, :position, :age, :gp, :mpg, :FTa, :FTper, :twoPA, :twoPer, :threePa, :threePer, :ppg, :rpg, :apg, :spg, :bpg, :topg, :versatilityIndex
+  attributes :id,
+             :full_name,
+             :likes,
+             :team,
+             :pos,
+             :age,
+             :games,
+             :games_started,
+             :mpg,
+             :fga,
+             :fgp,
+             :threeP,
+             :threePA,
+             :threePP,
+             :ppg,
+             :rpg,
+             :apg,
+             :spg,
+             :bpg,
+             :tpg,
+             :twoP,
+             :twoPA,
+             :twoPP,
+             :efg,
+             :ft,
+             :fta,
+             :ftp,
+             :orb,
+             :drb
+  has_many :comments
 end
