@@ -1,7 +1,6 @@
 class PlayerSerializer < ActiveModel::Serializer
   attributes :id,
              :full_name,
-             :likes,
              :team,
              :pos,
              :age,
@@ -28,5 +27,5 @@ class PlayerSerializer < ActiveModel::Serializer
              :ftp,
              :orb,
              :drb
-  has_many :comments
+  has_many :user_rosters
 end
