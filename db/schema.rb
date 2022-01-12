@@ -10,62 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_012038) do
+ActiveRecord::Schema.define(version: 2022_01_12_055145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "branded_items", force: :cascade do |t|
-    t.bigint "brand_id", null: false
-    t.bigint "item_id", null: false
+  create_table "favorite_players", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["brand_id"], name: "index_branded_items_on_brand_id"
-    t.index ["item_id"], name: "index_branded_items_on_item_id"
+    t.index ["player_id"], name: "index_favorite_players_on_player_id"
+    t.index ["user_id"], name: "index_favorite_players_on_user_id"
   end
 
-  create_table "brands", force: :cascade do |t|
-    t.string "name"
+  create_table "favorite_teams", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "nba_team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "full_names", force: :cascade do |t|
-    t.string "team"
-    t.string "position"
-    t.float "age"
-    t.integer "gp"
-    t.float "mpg"
-    t.integer "FTa"
-    t.float "FTper"
-    t.integer "twoPA"
-    t.float "twoPer"
-    t.integer "threePa"
-    t.string "threePer"
-    t.float "ppg"
-    t.float "rpg"
-    t.float "apg"
-    t.float "spg"
-    t.float "bpg"
-    t.float "topg"
-    t.float "versatilityIndex"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "price"
-    t.float "rating"
-    t.integer "seller_id"
-    t.integer "buyer_id"
-    t.bigint "brand_id", null: false
-    t.boolean "sold", default: false
-    t.boolean "sale", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "img_url"
-    t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["nba_team_id"], name: "index_favorite_teams_on_nba_team_id"
+    t.index ["user_id"], name: "index_favorite_teams_on_user_id"
   end
 
   create_table "nba_teams", force: :cascade do |t|
@@ -104,25 +69,13 @@ ActiveRecord::Schema.define(version: 2022_01_12_012038) do
     t.string "last_name"
     t.string "username"
     t.string "password_digest"
-    t.string "img_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.boolean "admin"
     t.string "email"
-  end
-
-  create_table "watch_lists", force: :cascade do |t|
-    t.bigint "item_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_watch_lists_on_item_id"
-    t.index ["user_id"], name: "index_watch_lists_on_user_id"
   end
 
-  add_foreign_key "branded_items", "brands"
-  add_foreign_key "branded_items", "items"
-  add_foreign_key "items", "brands"
-  add_foreign_key "watch_lists", "items"
-  add_foreign_key "watch_lists", "users"
+  add_foreign_key "favorite_players", "players"
+  add_foreign_key "favorite_players", "users"
+  add_foreign_key "favorite_teams", "nba_teams"
+  add_foreign_key "favorite_teams", "users"
 end
