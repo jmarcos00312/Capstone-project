@@ -8,4 +8,5 @@ class UserSerializer < ActiveModel::Serializer
              :favorite_player,
              :favorite_team
   has_many :comments
+  has_many :likes
 end

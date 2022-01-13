@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :likes
   resources :comments
   resources :users, only: %i[create index]
   resources :nba_teams, only: %i[index update]
