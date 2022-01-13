@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     render json: Comment.all
   end
   def create
-    comment = Comment.create!(comment_params)
+    comment = @current_user.comments.create!(comment_params)
     render json: comment, status: :created
   end
   def show
@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
     comment.update!(comment_params)
     render json: comment
   end
+
+
 
   private
 

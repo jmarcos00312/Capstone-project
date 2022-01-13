@@ -7,12 +7,8 @@ class UserSerializer < ActiveModel::Serializer
              :email,
              :favorite_player,
              :favorite_team,
-             :get_player_name
+             :admin
   has_many :comments
   has_many :likes
 
-  def get_player_name
-    "test"
-    # object.likes.player.full_name
-  end
 end
