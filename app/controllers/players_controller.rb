@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-
   def index
     render json: Player.all
   end
@@ -29,10 +28,9 @@ class PlayersController < ApplicationController
 
   def addLiketoPlayer
     player = find_players
-    player.update(likeCount: player.likeCount + 1)
+    player.update(likeCount: player.likes.count)
     render json: player
   end
-
 
   private
 

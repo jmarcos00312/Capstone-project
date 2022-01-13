@@ -27,6 +27,9 @@ class PlayerSerializer < ActiveModel::Serializer
              :ftp,
              :orb,
              :drb,
-             :likeCount
+             :likeCount,
+             :likes
   has_many :comments
+
+
 end

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :likes
+  resources :likes, only: %i[create destroy]
   resources :comments
   resources :users, only: %i[create index]
   resources :nba_teams, only: %i[index update]
   resources :players
-
-  patch "/players/:id/like", to: "players#addLiketoPlayer"
+  get '/players/:id/comment', to: 'comments#create'
+  patch '/players/:id/like', to: 'players#addLiketoPlayer'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/me', to: 'users#me'
