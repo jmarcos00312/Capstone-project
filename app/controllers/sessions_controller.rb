@@ -1,7 +1,7 @@
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
   # skip_before_action :authenticate_user, only: %i[create logout]
   # skip_before_action :authorize, only: :create
-
+skip_before_action :authenticate_user, only: [:create]
   def create
     user = User.find_by!(username: params[:username])
     if user.authenticate(params[:password])
