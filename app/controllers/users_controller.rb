@@ -20,6 +20,10 @@ class UsersController < ApplicationController
 
   private
 
+  def find_user
+    User.find(params[:id])
+  end
+
   def user_params
     params.permit(:first_name, :last_name, :username, :email, :password, :favorite_player, :favorite_team)
   end
