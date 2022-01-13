@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources :create_user_rosters, only: %i[create index]
   resources :likes, only: %i[create destroy]
   resources :comments
   resources :users, only: %i[create index]
@@ -9,7 +10,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/me', to: 'users#me'
-  post 'signup', to: 'users#create'
+  get '/get_roster', to: 'create_user_rosters#index'
+  post '/signup', to: 'users#create'
+  # get
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
