@@ -32,6 +32,11 @@ class PlayersController < ApplicationController
     render json: player
   end
 
+  def find_by_name
+    player = Player.find_by_full_name(params[:full_name])
+    render json: player
+  end
+
   private
 
   def find_players
