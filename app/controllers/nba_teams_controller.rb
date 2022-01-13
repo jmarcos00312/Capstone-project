@@ -1,11 +1,12 @@
 class NbaTeamsController < ApplicationController
-
+  # before_action :authorize
   def index
     render json: NbaTeam.all
-   end
+  end
 
-  def create
-    newTeam = NbaTeam.create!(team_params)
+  def update
+    team = NbaTeam.find(params[:id])
+    team.update!(team_params)
     render json: newTeam, status: :created
   end
 

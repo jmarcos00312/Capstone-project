@@ -1,10 +1,14 @@
 class User < ApplicationRecord
-  has_many :likes
-  has_many :players, through: :likes
+  has_secure_password
+
+  # has_one
   has_many :comments
   has_many :players, through: :comments
-  has_one :favorite_player
-  has_one :favorite_team
-  has_one :user_roster
-  has_many :players, through: :user_roster
+  has_many :likes
+  has_many :players, through: :likes
+
+  validates :email,
+            format: /\w+@\w+\.{1}[a-zA-Z]{2,}/,
+            presence: true,
+            uniqueness: true
 end

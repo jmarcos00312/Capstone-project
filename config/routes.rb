@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  resources :user_rosters
-  resources :likes
+  resources :likes, only: %i[create destroy]
   resources :comments
-  resources :favorite_teams
-  resources :favorite_players
-  resources :users
-  resources :nba_teams
+  resources :users, only: %i[create index]
+  resources :nba_teams, only: %i[index update]
   resources :players
-   get '/hello', to: 'application#hello_world'
+  get '/players/:id/comment', to: 'comments#create'
+  patch '/players/:id/like', to: 'players#addLiketoPlayer'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get '/me', to: 'users#me'
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
-  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+  get '*path',
+      to: 'fallback#index',
+      constraints: ->(req) { !req.xhr? && req.format.html? }
 end
