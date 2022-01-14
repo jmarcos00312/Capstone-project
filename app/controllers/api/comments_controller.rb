@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Api::CommentsController < ApplicationController
   def index
     render json: Comment.all
   end
@@ -14,6 +14,12 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     comment.update!(comment_params)
     render json: comment
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    render json: "deleted"
   end
 
 

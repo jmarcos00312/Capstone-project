@@ -2,11 +2,11 @@ class User < ApplicationRecord
   has_secure_password
 
   # has_one
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :players, through: :comments
-  has_many :likes
+  has_many :likes,dependent: :destroy
   has_many :players, through: :likes
-  has_many :create_user_rosters
+  has_many :create_user_rosters, dependent: :destroy
   has_many :players, through: :create_user_rosters
 
   validates :email,

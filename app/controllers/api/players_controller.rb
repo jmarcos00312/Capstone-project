@@ -1,4 +1,4 @@
-class PlayersController < ApplicationController
+class Api::PlayersController < ApplicationController
   def index
     render json: Player.all
   end
