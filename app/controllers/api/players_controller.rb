@@ -14,16 +14,24 @@ class Api::PlayersController < ApplicationController
   end
 
   def update
-    player = find_players
-    player.update!(player_params)
-    render json: player
+    if current_user.admin?
+      player = find_players
+      player.update!(player_params)
+      render json: player
+    else
+      render json: 'You are not an admin'
+    end
   end
 
   def destroy
-    player = find_players
-    player.destroy
-    head :no_content
-    puts 'deleted'
+    if current_user.admin?
+      player = find_players
+      player.destroy
+      head :no_content
+      puts 'deleted'
+    else
+      render json: 'You are not an admin'
+    end
   end
 
   def addLiketoPlayer

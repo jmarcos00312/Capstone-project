@@ -6,17 +6,17 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-      user = User.create!(user_params)
-      player = Player.find_by(full_name: user.favorite_player)
-      team = NbaTeam.find_by(name: user.favorite_team)
-      if player && team
-        session[:user_id] = user.id
-        render json: user
-      else
-        user.destroy
-        render json: 'favorite player or team is does not exist',
-               status: :unprocessable_entity
-      end
+    user = User.create!(user_params)
+    player = Player.find_by(full_name: user.favorite_player)
+    team = NbaTeam.find_by(name: user.favorite_team)
+    if player && team
+      session[:user_id] = user.id
+      render json: user
+    else
+      user.destroy
+      render json: 'favorite player or team is does not exist',
+             status: :unprocessable_entity
+    end
   end
 
   def me
@@ -25,6 +25,11 @@ class Api::UsersController < ApplicationController
     else
       render json: 'Not authenticated', status: :unauthorized
     end
+  end
+
+  def add_to_user_like_list
+    player = Player.find(params[:id])
+    current_user.likes.create(player.id)
   end
 
   private

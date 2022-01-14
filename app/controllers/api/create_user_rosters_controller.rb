@@ -1,6 +1,6 @@
 class Api::CreateUserRostersController < ApplicationController
   def index
-    render json: CreateUserRoster.all
+    render json: CreateUserRoster.all, except: %i[created_at updated_at]
   end
 
   def create
