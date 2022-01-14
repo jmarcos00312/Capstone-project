@@ -83,6 +83,7 @@ User.create(
   email: 'jeremiah@gmail.com',
   favorite_player: 'Damian Lillard',
   favorite_team: 'Los Angeles Lakers',
+  admin: true,
 )
 User.create(
   first_name: 'other',

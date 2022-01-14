@@ -12,7 +12,12 @@ Rails.application.routes.draw do
     delete '/logout', to: 'sessions#destroy'
     get '/me', to: 'users#me'
     get '/get_roster', to: 'create_user_rosters#index'
-    patch 'user_liked', to: "users#add_to_user_like_list"
+    patch 'user_liked', to: 'users#add_to_user_like_list'
+    get 'by_assists', to: 'players#by_apg'
+    get 'by_rebound', to: 'players#by_rpg'
+    get 'by_3', to: 'players#by_three_point_percentage'
+    get 'by_efg', to: 'players#by_efg'
+    get 'by_team/:team', to: 'players#by_team'
 
     # get '/get_roster/:id', to: 'create_user_rosters#destroy'
     post '/signup', to: 'users#create'

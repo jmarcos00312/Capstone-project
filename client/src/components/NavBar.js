@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Comment() {
+function NavBar() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function Comment() {
     )
 }
 
-export default Comment
+export default NavBar

@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  skip_before_action :authenticate_user, only: %i[create me]
+  # skip_before_action :authenticate_user, only: %i[create me]
 
   def index
     render json: User.all
@@ -20,11 +20,11 @@ class Api::UsersController < ApplicationController
   end
 
   def me
-    if current_user
+    # if current_user
       render json: current_user, status: :ok
-    else
-      render json: 'Not authenticated', status: :unauthorized
-    end
+    # else
+    #   render json: 'Not authenticated', status: :unauthorized
+    # end
   end
 
   def add_to_user_like_list

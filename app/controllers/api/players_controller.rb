@@ -1,6 +1,28 @@
 class Api::PlayersController < ApplicationController
   def index
-    render json: Player.all
+    players = Player.order(ppg: :desc)
+    render json: players
+  end
+
+  def by_apg
+    players = Player.order(apg: :desc)
+    render json: players
+  end
+  def by_rpg
+    players = Player.order(rpg: :desc)
+    render json: players
+  end
+  def by_three_point_percentage
+    players = Player.order(threePP: :desc)
+    render json: players
+  end
+  def by_efg
+    players = Player.order(efg: :desc)
+    render json: players
+  end
+  def by_team
+    players = Player.where(team: [params[:team]]).order(ppg: :desc)
+    render json: players
   end
 
   def show
@@ -9,8 +31,12 @@ class Api::PlayersController < ApplicationController
   end
 
   def create
-    newPlayer = Player.create!(player_params)
-    render json: newPlayer
+    if current_user.admin?
+      newPlayer = Player.create!(player_params)
+      render json: newPlayer
+    else
+      render json: 'You are not an admin'
+    end
   end
 
   def update
