@@ -3,11 +3,12 @@ import './App.css';
 import LoginFrom from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import Get_every_players from "./components/Get_every_players"
-
+import NavBar from "./components/NavBar"
+import BballPicture from "./components/BballPicture"
 import LoginPages from "./pages/LoginPages"
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
-  const [authenticated, setAuthenticated] = useState(false);
+
 
   useEffect(() => {
     fetch("api/me", {
@@ -16,11 +17,10 @@ function App() {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
-          setAuthenticated(true);
+
           // console.log(currentUser);
         });
       } else {
-        setAuthenticated(true);
       }
     });
   }, []);
@@ -29,19 +29,21 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="testing">HELLO</h1>
+      {/* <NavBar /> */}
       {currentUser ? (
         <div>
           <LoginPages />
         </div>
-      ) :
-        <LoginFrom
-          setCurrentUser={setCurrentUser}
-          currentUser={currentUser}
-        />}
-      {/* <LoginFrom setCurrentUser={setCurrentUser} currentUser={currentUser} /> */}
-      <SignupForm />
-      <Get_every_players />
+      ) : (
+        <div className="login-page">
+          <LoginFrom
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+          />
+        </div>)}
+
+      {/* <SignupForm />
+        <Get_every_players /> */}
     </div>
   );
 }
