@@ -1,4 +1,4 @@
-class NbaTeamsController < ApplicationController
+class Api::NbaTeamsController < ApplicationController
   # before_action :authorize
   def index
     render json: NbaTeam.all
