@@ -27,7 +27,7 @@ function Get_every_players() {
             <button onClick={handleSubmit} value="NYK">Knicks</button>
             <button onClick={handleSubmit} value="DAL">Dallas</button>
             <button onClick={handleSubmit} value="BOS">Celtics</button>
-            <button onClick={handleSubmit} value="CHA">Hornets</button>
+            <button onClick={handleSubmit} value="CHO">Hornets</button>
             <button onClick={handleSubmit} value="CHI">Bulls</button>
             <button onClick={handleSubmit} value="CLE">Cleaveland</button>
             <button onClick={handleSubmit} value="HOU">HOUSTON</button>
