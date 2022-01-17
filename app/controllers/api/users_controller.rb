@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
 
   def create
     user = User.create!(user_params)
-    byebug
+    # byebug
     player = Player.find_by(full_name: user.favorite_player)
     team = NbaTeam.find_by(name: user.favorite_team)
     if player && team
