@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import "./Get_every_player.css"
+import TableComponent from "./TableComponent"
+
 function Get_every_players() {
     const [topScorer, setTopScorer] = useState([])
     const [players, setPlayers] = useState([])
 
     useEffect(() => {
-        fetch("api/players").then(r => r.json()).then(setTopScorer)
+        fetch("api/players/?_limit=15").then(r => r.json()).then(setTopScorer)
     }, [])
 
     const handleSubmit = (e) => {
@@ -14,12 +16,17 @@ function Get_every_players() {
         fetch(`api/by_team/${team}`).then(r => r.json()).then(setPlayers)
     }
 
-    const topPPgplayers = topScorer.slice(0, 15)
+    // const topPPgplayers 
+    const topPPGplayers = topScorer.forEach(player => {
+        return (
+            <TableComponent player={player} />
+        )
 
-    const everyPlayers = players.map(player => <h1 className="name">{player.full_name}</h1>)
+    })
+
     return (
         <div className="team-buttons">
-            {console.log(topPPgplayers)}
+            {console.log(topScorer)}
             <button onClick={handleSubmit} value="LAL">Lakers</button>
             <button onClick={handleSubmit} value="ATL">Atlanta</button>
             <button onClick={handleSubmit} value="BRK">Brooklyn Nets</button>
@@ -32,8 +39,7 @@ function Get_every_players() {
             <button onClick={handleSubmit} value="HOU">HOUSTON</button>
             <button onClick={handleSubmit} value="DET">Pistons</button>
             <button onClick={handleSubmit} value="GSW">Warriors</button>
-
-            {everyPlayers}
+            {topPPGplayers}
 
         </div>
     )

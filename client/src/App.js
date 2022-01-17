@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import LoginFrom from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Profile from './pages/Profile';
 
 function App() {
