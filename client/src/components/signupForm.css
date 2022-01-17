@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
+.everything {
+  margin-top: 5em;
+  background-color: #00383f;
+  width: 120vh;
+  border-radius: 20px;
+}
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.Sign-up-form-div {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+label {
+  font-size: 20px;
+  color: antiquewhite;
+}
+.image-signup {
+  padding-left: 50px;
+  padding: 25px;
+  border-radius: 50px;
+}
+
+.Submit {
+  background-color: #7eb0b5;
+  font-size: 30px;
+}
+
+.create-account {
+  color: antiquewhite;
+}
+.entire-signup {
+  padding: 50px;
+}
+.input-send {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

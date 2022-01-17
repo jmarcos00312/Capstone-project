@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import LoginFrom from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
-import Get_every_players from "./components/Get_every_players"
 import NavBar from "./components/NavBar"
-import BballPicture from "./components/BballPicture"
 import LoginPages from "./pages/LoginPages"
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
 
@@ -30,7 +35,7 @@ function App() {
   return (
     <div className="App">
       {/* <NavBar /> */}
-      {currentUser ? (
+      {/* {currentUser ? (
         <div>
           <LoginPages />
         </div>
@@ -40,10 +45,14 @@ function App() {
             setCurrentUser={setCurrentUser}
             currentUser={currentUser}
           />
-        </div>)}
+        </div>)} */}
+      <Routes>
+        <Route path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} />} />
 
-      {/* <SignupForm />
-        <Get_every_players /> */}
+      </Routes>
+
+      <SignupForm />
+
     </div>
   );
 }
