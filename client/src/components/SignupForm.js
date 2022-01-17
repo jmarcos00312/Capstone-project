@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './signupForm.css'
+import { Link } from 'react-router-dom'
 
 function SignupForm({ setCurrentUser }) {
     const [signupForm, setSignupForm] = useState({
@@ -61,7 +62,7 @@ function SignupForm({ setCurrentUser }) {
             <div className="Sign-up-form-div">
                 <div> <img className="image-signup" alt="Basketball hoop" src="https://images.unsplash.com/photo-1518063319789-7217e6706b04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YmFza2V0YmFsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" /> </div>
                 <div className="signup-container">
-                    
+
                     <form onSubmit={handleSubmit} className="form">
                         <div className="form-group">
                             <label>🏀   First Name:   🏀</label>
@@ -136,6 +137,7 @@ function SignupForm({ setCurrentUser }) {
                         </div>
                         <div className="input-send">
                             <button type="submit" className="Submit">Submit</button>
+                            <Link to="/login"><button className="Submit">Log in</button></Link>
                         </div>
                     </form>
                 </div>

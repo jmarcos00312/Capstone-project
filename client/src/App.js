@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import LoginFrom from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
-import NavBar from "./components/NavBar"
-import LoginPages from "./pages/LoginPages"
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link
 } from "react-router-dom";
+import Profile from './pages/Profile';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -22,14 +22,11 @@ function App() {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
-
-          // console.log(currentUser);
         });
       } else {
       }
     });
   }, []);
-  // console.log(currentUser)
 
 
   return (
@@ -37,7 +34,7 @@ function App() {
       {/* <NavBar /> */}
       {currentUser ? (
         <div>
-          <LoginPages />
+          <Profile />
         </div>
       ) : (
         <div className="login-page">
@@ -48,10 +45,14 @@ function App() {
         </div>)}
       <Routes>
         <Route path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} />} />
+        <Route path="/login" element={<LoginFrom
+          setCurrentUser={setCurrentUser}
+          currentUser={currentUser}
+        />} />
 
       </Routes>
 
-      <SignupForm />
+      {/* <SignupForm /> */}
 
     </div>
   );

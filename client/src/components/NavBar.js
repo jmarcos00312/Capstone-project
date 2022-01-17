@@ -31,8 +31,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 function NavBar() {
+    const handleLogout = () => {
+        fetch("api/logout", { method: "DELETE" });
+    }
     const classes = useStyles();
     return (
         <AppBar position="static" style={{ background: '#2E3B55' }}>
@@ -51,8 +53,8 @@ function NavBar() {
                     <Link to="/contact" className={classes.link}>
                         Contact
                     </Link>
-                    <Link to="/faq" className={classes.link}>
-                        FAQ
+                    <Link to="/logout" className={classes.link} onClick={handleLogout}>
+                        Logout
                     </Link>
                 </div>
             </Toolbar>
