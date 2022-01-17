@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="App">
       {/* <NavBar /> */}
-      {/* {currentUser ? (
+      {currentUser ? (
         <div>
           <LoginPages />
         </div>
@@ -45,7 +45,7 @@ function App() {
             setCurrentUser={setCurrentUser}
             currentUser={currentUser}
           />
-        </div>)} */}
+        </div>)}
       <Routes>
         <Route path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} />} />
 

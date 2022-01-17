@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     get 'by_3', to: 'players#by_three_point_percentage'
     get 'by_efg', to: 'players#by_efg'
     get 'by_team/:team', to: 'players#by_team'
+    post '/signup', to: 'users#create'
 
     # get '/get_roster/:id', to: 'create_user_rosters#destroy'
-    post '/signup', to: 'users#create'
 
     # get
 

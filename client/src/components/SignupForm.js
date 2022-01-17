@@ -14,22 +14,22 @@ function SignupForm({ setCurrentUser }) {
     })
 
     const handleChange = (e) => {
-        setSignupForm({ ...signupForm, [e.target.name]: [e.target.value] })
+        setSignupForm({ ...signupForm, [e.target.name]:e.target.value })
     }
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const templatePost = {
+        const configObj = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(signupForm),
+            body: JSON.stringify(SignupForm),
         };
 
-        fetch("api/signup", templatePost).then(resp => {
+        fetch("api/signup", configObj).then(resp => {
             if (resp.ok) {
                 resp.json().then(newUser => {
                     setCurrentUser(newUser);
@@ -45,7 +45,7 @@ function SignupForm({ setCurrentUser }) {
                     window.location.reload(false)
                 })
             } else {
-                resp.json().then(error => console.error(error))
+                resp.json().then(errors => console.error(errors))
             }
         })
     }
@@ -132,7 +132,6 @@ function SignupForm({ setCurrentUser }) {
                         </div>
                         <div className="input-send">
                             <button type="submit" className="Submit">Submit</button>
-                            {/* <input type="submit" value="send" className="Submit" /> */}
                         </div>
                     </form>
                 </div>

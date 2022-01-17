@@ -3,7 +3,7 @@ class UserSerializer < ActiveModel::Serializer
              :first_name,
              :last_name,
              :username,
-             :password_digest,
+            #  :password_digest,
              :email,
              :favorite_player,
              :favorite_team,
@@ -11,5 +11,4 @@ class UserSerializer < ActiveModel::Serializer
              :create_user_rosters
   has_many :comments
   has_many :likes
-  # has_one :create_user_rosters
 end
