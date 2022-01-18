@@ -5,3 +5,43 @@
   display: flex;
   margin: 0;
 } */
+
+.content-table {
+  border-collapse: collapse;
+  margin: 30px;
+  font-size: 1.3em;
+  min-width: 400px;
+}
+
+.content-table thead tr {
+  background-color: #1e1e1e;
+  color: antiquewhite;
+  text-align: center;
+  font-weight: bold;
+}
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: rgb(175, 173, 173);
+}
+.content-table tbody tr:nth-of-type(odd) {
+  color: rgb(175, 173, 173);
+}
+.content-table button {
+  margin-top: 15px;
+  padding: 10px;
+}
+#ball {
+  font-size: 50px;
+}
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+}

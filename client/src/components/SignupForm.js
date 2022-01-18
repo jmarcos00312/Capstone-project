@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './signupForm.css'
+import { Link } from 'react-router-dom'
 
 function SignupForm({ setCurrentUser }) {
     const [signupForm, setSignupForm] = useState({
@@ -14,14 +15,14 @@ function SignupForm({ setCurrentUser }) {
     })
 
     const handleChange = (e) => {
-        setSignupForm({ ...signupForm, [e.target.name]: [e.target.value] })
+        setSignupForm({ ...signupForm, [e.target.name]: e.target.value })
     }
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const templatePost = {
+        const configObj = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,10 +30,11 @@ function SignupForm({ setCurrentUser }) {
             body: JSON.stringify(signupForm),
         };
 
-        fetch("api/signup", templatePost).then(resp => {
+        fetch("api/signup", configObj).then((resp) => {
             if (resp.ok) {
-                resp.json().then(newUser => {
-                    setCurrentUser(newUser);
+                resp.json().then((user) => {
+                    console.log(user);
+                    setCurrentUser(user);
                     setSignupForm({
                         first_name: "",
                         last_name: "",
@@ -41,13 +43,16 @@ function SignupForm({ setCurrentUser }) {
                         email: "",
                         favorite_player: "",
                         favorite_team: "",
+                        admin: false,
                     })
                     window.location.reload(false)
-                })
+                });
             } else {
-                resp.json().then(error => console.error(error))
+                resp.json().then((errors) => {
+                    console.error(errors);
+                });
             }
-        })
+        });
     }
 
 
@@ -57,15 +62,15 @@ function SignupForm({ setCurrentUser }) {
             <div className="Sign-up-form-div">
                 <div> <img className="image-signup" alt="Basketball hoop" src="https://images.unsplash.com/photo-1518063319789-7217e6706b04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YmFza2V0YmFsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" /> </div>
                 <div className="signup-container">
-                    <form onSubmit={handleSubmit} className="form">
 
+                    <form onSubmit={handleSubmit} className="form">
                         <div className="form-group">
                             <label>🏀   First Name:   🏀</label>
                             <input
                                 name="first_name"
                                 type="text"
                                 value={signupForm.first_name}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
                                 required />
 
                         </div>
@@ -76,7 +81,7 @@ function SignupForm({ setCurrentUser }) {
                                 name="last_name"
                                 type="text"
                                 value={signupForm.last_name}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
                                 required />
 
                         </div>
@@ -87,7 +92,7 @@ function SignupForm({ setCurrentUser }) {
                                 name="username"
                                 type="text"
                                 value={signupForm.username}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
                                 required />
                         </div>
 
@@ -97,7 +102,7 @@ function SignupForm({ setCurrentUser }) {
                                 name="password"
                                 type="password"
                                 value={signupForm.password}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
                                 required />
                         </div>
 
@@ -107,7 +112,7 @@ function SignupForm({ setCurrentUser }) {
                                 name="email"
                                 type="text"
                                 value={signupForm.email}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
                                 required />
                         </div>
 
@@ -117,7 +122,7 @@ function SignupForm({ setCurrentUser }) {
                                 name="favorite_player"
                                 type="text"
                                 value={signupForm.favorite_player}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
                                 required />
                         </div>
 
@@ -127,12 +132,12 @@ function SignupForm({ setCurrentUser }) {
                                 name="favorite_team"
                                 type="text"
                                 value={signupForm.favorite_team}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
                                 required />
                         </div>
                         <div className="input-send">
                             <button type="submit" className="Submit">Submit</button>
-                            {/* <input type="submit" value="send" className="Submit" /> */}
+                            <Link to="/login"><button className="Submit">Log in</button></Link>
                         </div>
                     </form>
                 </div>
