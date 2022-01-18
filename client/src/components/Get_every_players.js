@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import "./Get_every_player.css"
-import TableComponent from "./TableComponent"
+import Table from 'react-bootstrap/Table'
+
+
 
 function Get_every_players() {
     const [topScorer, setTopScorer] = useState([])
     const [players, setPlayers] = useState([])
+    const [selectedPlayer, setSelectedPlayer] = useState({})
+
+    const handleMoreDetails = (e) => {
+        console.log(e)
+        fetch(`api/players/${e}`).then(r => r.json()).then(setSelectedPlayer)
+        console.log(selectedPlayer)
+    }
 
     useEffect(() => {
-        fetch("api/players/?_limit=15").then(r => r.json()).then(setTopScorer)
+        fetch("api/players").then(r => r.json()).then(setTopScorer)
     }, [])
 
     const handleSubmit = (e) => {
@@ -16,31 +25,53 @@ function Get_every_players() {
         fetch(`api/by_team/${team}`).then(r => r.json()).then(setPlayers)
     }
 
-    // const topPPgplayers 
-    const topPPGplayers = topScorer.forEach(player => {
-        return (
-            <TableComponent player={player} />
-        )
 
+    const topPPGplayers = topScorer.map(player => {
+        return (
+            <tr>
+                <div className="button-div">
+                    <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
+                </div>
+                <td>{player.team}</td>
+                <td>{player.full_name}</td>
+                <td>{player.pos}</td>
+                <td>{player.games}</td>
+                <td>{player.mpg}</td>
+                <td>{player.ppg}</td>
+                <td>{player.apg}</td>
+                <td>{player.rpg}</td>
+                <td>{player.spg}</td>
+                <td>{player.bpg}</td>
+            </tr>
+        )
     })
 
     return (
-        <div className="team-buttons">
-            {console.log(topScorer)}
-            <button onClick={handleSubmit} value="LAL">Lakers</button>
-            <button onClick={handleSubmit} value="ATL">Atlanta</button>
-            <button onClick={handleSubmit} value="BRK">Brooklyn Nets</button>
-            <button onClick={handleSubmit} value="NYK">Knicks</button>
-            <button onClick={handleSubmit} value="DAL">Dallas</button>
-            <button onClick={handleSubmit} value="BOS">Celtics</button>
-            <button onClick={handleSubmit} value="CHO">Hornets</button>
-            <button onClick={handleSubmit} value="CHI">Bulls</button>
-            <button onClick={handleSubmit} value="CLE">Cleaveland</button>
-            <button onClick={handleSubmit} value="HOU">HOUSTON</button>
-            <button onClick={handleSubmit} value="DET">Pistons</button>
-            <button onClick={handleSubmit} value="GSW">Warriors</button>
-            {topPPGplayers}
-
+        <div>
+            <Table className="content-table">
+                <thead>
+                    <tr>
+                        <th id="ball">🏀</th>
+                        <th><h1>Team</h1></th>
+                        <th><h1><strong>Name</strong></h1></th>
+                        <th><h3><strong>Position</strong></h3></th>
+                        <th><h3><strong>Games Played</strong></h3></th>
+                        <th><h3><strong>Minutes per game</strong></h3></th>
+                        <th><h3><strong>Points per game</strong></h3></th>
+                        <th><h3><strong>Assists per game</strong></h3></th>
+                        <th><h3><strong>Rebounds per game</strong></h3></th>
+                        <th><h3><strong>Steals per game</strong></h3></th>
+                        <th><h3><strong>Blocks per game</strong></h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {topPPGplayers}
+                </tbody>
+            </Table>
+            <div className="footer-buttons">
+                <button>Previous</button>
+                <button>Next</button>
+            </div>
         </div>
     )
 }
