@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import "./Get_every_player.css"
 import Table from 'react-bootstrap/Table'
+import { Link } from "react-router-dom";
 
 
 
-function Get_every_players() {
+
+
+function Get_every_players({ setComments, selectedPlayer, setClicked, setSelectedPlayer }) {
     const [topScorer, setTopScorer] = useState([])
     const [players, setPlayers] = useState([])
-    const [selectedPlayer, setSelectedPlayer] = useState({})
+
 
     const handleMoreDetails = (e) => {
-        console.log(e)
-        fetch(`api/players/${e}`).then(r => r.json()).then(setSelectedPlayer)
-        console.log(selectedPlayer)
+        fetch(`api/players/${e}`).then(r => r.json()).then(data => {
+            setSelectedPlayer(data)
+            setComments(data.comments)
+            setClicked(true)
+        })
+        // console.log(selectedPlayer)
     }
+    
 
     useEffect(() => {
         fetch("api/players").then(r => r.json()).then(setTopScorer)
@@ -25,12 +32,13 @@ function Get_every_players() {
         fetch(`api/by_team/${team}`).then(r => r.json()).then(setPlayers)
     }
 
-
     const topPPGplayers = topScorer.map(player => {
         return (
             <tr>
                 <div className="button-div">
-                    <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
+                    <Link to="/moreDetails" >
+                        <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
+                    </Link>
                 </div>
                 <td>{player.team}</td>
                 <td>{player.full_name}</td>
