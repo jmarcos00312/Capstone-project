@@ -12,13 +12,13 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CommentForm from './CommentForm'
 import ShowComment from './ShowComment';
 
-function PlayerCard({ setComments, comments, currentUser, selectedPlayer, clicked, setSelectedPlayer }) {
-
+function PlayerCard({ currentUser, selectedPlayer, clicked, setSelectedPlayer }) {
+    const [commentActivate, setCommentActivate] = useState(false)
     let player = list.players.find(element => element.name === selectedPlayer.full_name);
 
     const showComment = () => {
+        setCommentActivate(prev => !prev)
     }
-
 
     return (
         <div className="each-card">
@@ -35,28 +35,36 @@ function PlayerCard({ setComments, comments, currentUser, selectedPlayer, clicke
                         <Typography gutterBottom variant="h4" >
                             <strong>{player.name}</strong><br /> College: {player.college}
                         </Typography>
+
                         <div>
-                            <ul className="more-stats">
-                                <strong>More Stats</strong>
-                                <br />
-                                <br />
-                                <li>Field goal percentage: <strong>{(selectedPlayer.fgp * 100).toFixed(2)}%</strong></li>
-                                <li>3 point percentage: <strong>{(selectedPlayer.threePP * 100).toFixed(2)}%</strong></li>
-                                <li>Free Throw percentage: <strong>{(selectedPlayer.ftp * 100).toFixed(2)}%</strong></li>
-                                <li>Turnovers per game: <strong>{(selectedPlayer.tpg)}</strong></li>
-                                <li>EFG: <strong>{(selectedPlayer.efg * 100).toFixed(2)}%</strong></li>
-                            </ul>
+                            <Box>
+                                <ul className="more-stats">
+                                    <strong>More Stats</strong>
+                                    <br />
+                                    <br />
+                                    <li>Field goal percentage: <strong>{(selectedPlayer.fgp * 100).toFixed(2)}%</strong></li>
+                                    <li>3 point percentage: <strong>{(selectedPlayer.threePP * 100).toFixed(2)}%</strong></li>
+                                    <li>Free Throw percentage: <strong>{(selectedPlayer.ftp * 100).toFixed(2)}%</strong></li>
+                                    <li>Turnovers per game: <strong>{(selectedPlayer.tpg)}</strong></li>
+                                    <li>EFG: <strong>{(selectedPlayer.efg * 100).toFixed(2)}%</strong></li>
+                                </ul>
+                            </Box>
                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                <Button onCLick={showComment}>Comment</Button>
+
+                                <Button onClick={showComment}>Comment</Button>
                                 <Button>Add To Roster</Button>
                             </ButtonGroup>
                         </div>
                     </CardContent>
                 </Card>
             }
-            <ShowComment comments={comments} currentUser={currentUser} />
-            <CommentForm player_id={selectedPlayer.id} user_id={currentUser.id} />
-            
+            {commentActivate &&
+                <div>
+                    <ShowComment comments={selectedPlayer.comments} />
+                    <CommentForm player={selectedPlayer} user_id={currentUser.id} />
+                </div>
+            }
+
         </div>
     )
 }

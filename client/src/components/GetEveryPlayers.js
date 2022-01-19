@@ -20,8 +20,6 @@ function Get_every_players({ setComments, selectedPlayer, setClicked, setSelecte
         })
         // console.log(selectedPlayer)
     }
-    
-
     useEffect(() => {
         fetch("api/players").then(r => r.json()).then(setTopScorer)
     }, [])

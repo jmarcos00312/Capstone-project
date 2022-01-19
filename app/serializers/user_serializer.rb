@@ -3,7 +3,6 @@ class UserSerializer < ActiveModel::Serializer
              :first_name,
              :last_name,
              :username,
-            #  :password_digest,
              :email,
              :favorite_player,
              :favorite_team,

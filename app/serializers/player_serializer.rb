@@ -30,6 +30,6 @@ class PlayerSerializer < ActiveModel::Serializer
              :likeCount,
              :fouls,
              :likes,
-             :create_user_rosters,
-             :comments
+             :create_user_rosters
+  has_many :comments
 end
