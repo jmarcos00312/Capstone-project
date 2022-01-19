@@ -1,12 +1,9 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
-import CardGroup from 'react-bootstrap/CardGroup'
 
 
 function ShowComment({ comments }) {
 
-
-    console.log(comments)
     let everyComment = comments.map((comment) => {
         return (
             <Card>
@@ -22,9 +19,9 @@ function ShowComment({ comments }) {
 
     return (
         <div style={{ backgroundColor: 'pink' }}>
-            <CardGroup>
+
                 {everyComment}
-            </CardGroup>
+
         </div>
     )
 }

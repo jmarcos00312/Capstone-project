@@ -12,13 +12,30 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CommentForm from './CommentForm'
 import ShowComment from './ShowComment';
 
-function PlayerCard({ currentUser, selectedPlayer, clicked, setSelectedPlayer }) {
+function PlayerCard({ currentUser, selectedPlayer, clicked }) {
     const [commentActivate, setCommentActivate] = useState(false)
+
     let player = list.players.find(element => element.name === selectedPlayer.full_name);
+
 
     const showComment = () => {
         setCommentActivate(prev => !prev)
     }
+
+    const handleAddToRoster = (e) => {
+        e.preventDefault()
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
+        };
+        fetch("api/create_user_rosters", configObj).then(r => r.json()).then()
+    }
+
+
+    console.log(currentUser)
 
     return (
         <div className="each-card">
@@ -52,7 +69,7 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setSelectedPlayer })
                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
 
                                 <Button onClick={showComment}>Comment</Button>
-                                <Button>Add To Roster</Button>
+                                <Button onClick={handleAddToRoster}>Add To Roster</Button>
                             </ButtonGroup>
                         </div>
                     </CardContent>

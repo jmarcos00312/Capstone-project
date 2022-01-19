@@ -6,8 +6,8 @@ class UserSerializer < ActiveModel::Serializer
              :email,
              :favorite_player,
              :favorite_team,
-             :admin,
-             :create_user_rosters
+             :admin
   has_many :comments
   has_many :likes
+  has_many :create_user_rosters
 end

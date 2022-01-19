@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :create_user_rosters, only: %i[destroy]
+    resources :create_user_rosters, only: %i[destroy index create]
     resources :likes, only: %i[create destroy]
     resources :comments
     resources :users, only: %i[create index]
@@ -14,16 +14,15 @@ Rails.application.routes.draw do
 
     get 'get_team/:team_abbr', to: 'nba_teams#show'
     get '/get_comments/:id', to: 'players#player_comments'
-    get '/get_roster', to: 'create_user_rosters#index'
     post '/add_comment/:id', to: 'comments#create'
     patch '/players/:id/like', to: 'players#get_player_like_count'
     patch 'user_liked', to: 'users#add_to_user_like_list'
     get 'by_assists', to: 'players#by_apg'
-    get 'by_3', to: 'players#by_three_point_percentage'
     get 'by_efg', to: 'players#by_efg'
     get 'by_team/:team', to: 'players#by_team'
     get 'top_scorer', to: 'players#top_scorer'
     get 'get_user/:id', to: 'users#show_name'
+
 
     # get '/get_roster/:id', to: 'create_user_rosters#destroy'
 

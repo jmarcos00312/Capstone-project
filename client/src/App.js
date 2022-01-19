@@ -4,7 +4,6 @@ import LoginFrom from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import { Routes, Route } from "react-router-dom";
 import Profile from './pages/Profile';
-import PlayerCard from './components/PlayerCard';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -38,7 +37,7 @@ function App() {
           />
         </div>)}
       <Routes>
-        <Route path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} />} />
+        <Route path="/signup" element={!currentUser && <SignupForm setCurrentUser={setCurrentUser} />} />
         <Route path="/login" element={<LoginFrom
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}

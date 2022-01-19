@@ -33,6 +33,7 @@ function Get_every_players({ setComments, selectedPlayer, setClicked, setSelecte
     const topPPGplayers = topScorer.map(player => {
         return (
             <tr>
+
                 <div className="button-div">
                     <Link to="/moreDetails" >
                         <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
@@ -54,6 +55,7 @@ function Get_every_players({ setComments, selectedPlayer, setClicked, setSelecte
 
     return (
         <div>
+            <h1 style={{ color: 'white' }}>Players</h1>
             <Table className="content-table">
                 <thead>
                     <tr>
