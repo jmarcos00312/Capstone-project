@@ -4,8 +4,8 @@ class Api::CreateUserRostersController < ApplicationController
   end
 
   def create
-    player = @current_user.create_user_rosters.create!(newRoster_params)
-    render json: @current_user.create_user_rosters, status: :created
+    player = CreateUserRoster.create!(newRoster_params)
+    render json: player, status: :created
   end
 
   def destroy

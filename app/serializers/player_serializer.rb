@@ -29,7 +29,7 @@ class PlayerSerializer < ActiveModel::Serializer
              :drb,
              :likeCount,
              :fouls,
-             :likes,
-             :create_user_rosters,
-             :comments
+             :likes
+  has_many :comments
+  has_many :create_user_rosters
 end

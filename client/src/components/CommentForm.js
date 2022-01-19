@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 
-function Comment({ player_id, user_id }) {
+function Comment({ player, user_id }) {
     const [commentForm, setCommentForm] = useState({
         content: "",
-        player_id: player_id,
-        user_id: user_id
     })
-
 
     const handleChange = (e) => {
         setCommentForm({ ...commentForm, [e.target.name]: e.target.value })
@@ -19,10 +16,10 @@ function Comment({ player_id, user_id }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(commentForm),
+            body: JSON.stringify({ ...commentForm, player_id: player.id, user_id: user_id }),
         };
 
-        fetch("api/comments", configObj).then(r => r.json()).then()
+        fetch("api/comments", configObj).then(r => r.json()).then(data => console.log(data))
     }
 
 

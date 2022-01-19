@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import Get_every_players from '../components/Get_every_players'
+import GetEveryPlayers from '../components/GetEveryPlayers'
 import Navbar from '../components/NavBar'
 import Hero from '../components/Hero'
 import PlayerCard from '../components/PlayerCard';
+import UserRoster from '../components/UserRoster';
 
 function Profile({ currentUser }) {
     const [selectedPlayer, setSelectedPlayer] = useState({})
     const [clicked, setClicked] = useState(false)
     const [comments, setComments] = useState([])
-
+    const [userRoster, setUserRoster] = useState(currentUser.create_user_rosters)
     return (
         <div className="profile-container">
 
@@ -20,8 +21,9 @@ function Profile({ currentUser }) {
                     <Hero />
                 </div>
             ) */}
-            <PlayerCard setComments={setComments} comments={comments} currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setSelectedPlayer={setSelectedPlayer} />
-            <Get_every_players setComments={setComments} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />
+            <UserRoster userRoster={userRoster} />
+            <PlayerCard currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setSelectedPlayer={setSelectedPlayer} />
+            <GetEveryPlayers setComments={setComments} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />
             {/* } */}
         </div>
     )
