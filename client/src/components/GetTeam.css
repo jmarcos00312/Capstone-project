@@ -1,0 +1,15 @@
+.team-image {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid pink;
+  /* max-height: 200px; */
+}
+
+.per-team {
+  width: 80px;
+  height: 100px;
+  background-color: burlywood;
+  border: 1px solid black;
+}

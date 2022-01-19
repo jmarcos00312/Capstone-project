@@ -7,9 +7,8 @@ import { Link } from "react-router-dom";
 
 
 
-function Get_every_players({ setComments, selectedPlayer, setClicked, setSelectedPlayer }) {
+function Get_every_players({ setComments, setClicked, setSelectedPlayer }) {
     const [topScorer, setTopScorer] = useState([])
-    const [players, setPlayers] = useState([])
 
 
     const handleMoreDetails = (e) => {
@@ -24,16 +23,9 @@ function Get_every_players({ setComments, selectedPlayer, setClicked, setSelecte
         fetch("api/players").then(r => r.json()).then(setTopScorer)
     }, [])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        let team = e.target.value
-        fetch(`api/by_team/${team}`).then(r => r.json()).then(setPlayers)
-    }
-
     const topPPGplayers = topScorer.map(player => {
         return (
             <tr>
-
                 <div className="button-div">
                     <Link to="/moreDetails" >
                         <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
