@@ -1,6 +1,7 @@
 class Api::LikesController < ApplicationController
   def create
     liked = Like.create!(like_params)
+    current_user.Like.create!(like_params)
     render json: liked
   end
 

@@ -3,7 +3,8 @@ class Api::CommentsController < ApplicationController
     render json: Comment.all
   end
   def create
-    comment = @current_user.comments.create!(comment_params)
+    # byebug
+    comment = Comment.create!(comment_params)
     render json: comment, status: :created
   end
   def show
@@ -17,13 +18,10 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-      comment = Comment.find(params[:id])
-      comment.destroy
-      render json: "deleted"
-
+    comment = Comment.find(params[:id])
+    comment.destroy
+    render json: 'deleted'
   end
-
-
 
   private
 
