@@ -1,56 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CardMedia from '@mui/material/CardMedia';
 import './playerCard.css'
+import list from '../list.json'
+import ButtonGroup from '@mui/material/ButtonGroup';
+import CommentForm from './CommentForm'
+import ShowComment from './ShowComment';
 
+function PlayerCard({ setComments, comments, currentUser, selectedPlayer, clicked, setSelectedPlayer }) {
 
-function PlayerCard({ full_name, team, pos, games, mpg, ppg, rpg, apg, spg, bpg }) {
+    let player = list.players.find(element => element.name === selectedPlayer.full_name);
 
+    const showComment = () => {
+    }
 
-
-    const handleViewMore = () => { }
-
-
-
-    const playerCard = (
-        <div classname="playerCard">
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
-                    <h1>{full_name}</h1>
-                </Typography>
-                <Typography variant="h5" component="div">
-                    <h3>{team} :  {pos}</h3>
-                    {/* <h3>{pos}</h3> */}
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.primary">
-                    <h3> <strong>{games} games  🏀  {mpg} minutes per game</strong></h3>
-                </Typography>
-                <Typography variant="body2">
-                    <ul className="stats">
-                        <li>🏀<strong>{ppg}</strong> Points per game</li>
-                        <li>🏀<strong>{apg}</strong> Assists per game</li>
-                        <li>🏀<strong>{rpg}</strong> Rebounds per game</li>
-                        <li>🏀<strong>{spg}</strong> Steals per game</li>
-                        <li>🏀<strong>{bpg}</strong> Blocks per game</li>
-                    </ul>
-                    <br />
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small" variant="primary">View More</Button>
-            </CardActions>
-        </div>
-    )
 
     return (
         <div className="each-card">
-            <Card className="cards">
-                {playerCard}
-            </Card>
+            {clicked &&
+
+                <Card>
+                    <CardMedia
+                        component="img"
+                        image={player.imgURL}
+                        alt={player.name}
+                        className="imgURL"
+                    />
+                    <CardContent className="player-name">
+                        <Typography gutterBottom variant="h4" >
+                            <strong>{player.name}</strong><br /> College: {player.college}
+                        </Typography>
+                        <div>
+                            <ul className="more-stats">
+                                <strong>More Stats</strong>
+                                <br />
+                                <br />
+                                <li>Field goal percentage: <strong>{(selectedPlayer.fgp * 100).toFixed(2)}%</strong></li>
+                                <li>3 point percentage: <strong>{(selectedPlayer.threePP * 100).toFixed(2)}%</strong></li>
+                                <li>Free Throw percentage: <strong>{(selectedPlayer.ftp * 100).toFixed(2)}%</strong></li>
+                                <li>Turnovers per game: <strong>{(selectedPlayer.tpg)}</strong></li>
+                                <li>EFG: <strong>{(selectedPlayer.efg * 100).toFixed(2)}%</strong></li>
+                            </ul>
+                            <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                                <Button onCLick={showComment}>Comment</Button>
+                                <Button>Add To Roster</Button>
+                            </ButtonGroup>
+                        </div>
+                    </CardContent>
+                </Card>
+            }
+            <ShowComment comments={comments} currentUser={currentUser} />
+            <CommentForm player_id={selectedPlayer.id} user_id={currentUser.id} />
+            
         </div>
     )
 }

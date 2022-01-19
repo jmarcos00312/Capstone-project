@@ -1,6 +1,13 @@
-ul {
-  list-style-type: none;
+.each-card {
+  display: flex;
+  justify-content: center;
 }
-.cards {
-    background-color: black;
+.imgURL {
+  background-color: black;
+  max-width: 800px;
+}
+
+.player-name {
+  background-color: black;
+  color: white;
 }

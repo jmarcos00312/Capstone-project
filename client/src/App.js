@@ -4,6 +4,7 @@ import LoginFrom from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import { Routes, Route } from "react-router-dom";
 import Profile from './pages/Profile';
+import PlayerCard from './components/PlayerCard';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -27,7 +28,7 @@ function App() {
     <div className="App">
       {currentUser ? (
         <div>
-          <Profile />
+          <Profile currentUser={currentUser} />
         </div>
       ) : (
         <div className="login-page">
@@ -42,7 +43,6 @@ function App() {
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
         />} />
-
       </Routes>
 
       {/* <SignupForm /> */}
