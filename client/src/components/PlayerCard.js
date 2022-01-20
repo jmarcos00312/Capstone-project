@@ -35,6 +35,7 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked }) {
 
     const handleCloseCard = () => {
         setClicked(prev => !prev)
+        setCommentActivate(prev => !prev)
     }
 
 
