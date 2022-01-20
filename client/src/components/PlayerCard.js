@@ -80,12 +80,12 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked }) {
             {
                 commentActivate &&
                 <div>
-                    <ShowComment comments={selectedPlayer.comments} />
+                    <ShowComment comments={selectedPlayer.comments} currentUser={currentUser} />
                     <CommentForm player={selectedPlayer} user_id={currentUser.id} />
                 </div>
             }
 
-        </div >
+        </div>
     )
 }
 
