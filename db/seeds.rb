@@ -1,6 +1,7 @@
 require 'csv'
 Player.destroy_all
 NbaTeam.destroy_all
+User.destroy_all
 
 puts 'seeding players'
 csv_text = File.read('lib/tasks/seed/twentyOne_players.csv')
@@ -75,26 +76,25 @@ NbaTeam.create(name: 'Washington Wizards', team_abbr: 'WAS')
 
 puts 'creating users'
 
-
-  User.create(
-    first_name: 'Jeremiah',
-    last_name: 'Marcos',
-    username: 'jmarcos',
-    password_digest: BCrypt::Password.create('jeremiah01'),
-    email: 'jeremiah@gmail.com',
-    favorite_player: 'Damian Lillard',
-    favorite_team: 'Los Angeles Lakers',
-    admin: true,
-  )
+User.create(
+  first_name: 'Jeremiah',
+  last_name: 'Marcos',
+  username: 'jmarcos',
+  password_digest: BCrypt::Password.create('jeremiah01'),
+  email: 'jeremiah@gmail.com',
+  favorite_player: 'Damian Lillard',
+  favorite_team: 'Los Angeles Lakers',
+  admin: true,
+)
 # byebug
 
-  User.create(
-    first_name: 'other',
-    last_name: 'user',
-    username: 'other_user',
-    password_digest: BCrypt::Password.create('jeremiah01'),
-    email: 'otherUser@gmail.com',
-    favorite_player: 'Devin Booker',
-    favorite_team: 'Portland Trail Blazers',
-    # byebug
-  )
+User.create(
+  first_name: 'other',
+  last_name: 'user',
+  username: 'other_user',
+  password_digest: BCrypt::Password.create('jeremiah01'),
+  email: 'otherUser@gmail.com',
+  favorite_player: 'Devin Booker',
+  favorite_team: 'Portland Trail Blazers',
+  # byebug
+)
