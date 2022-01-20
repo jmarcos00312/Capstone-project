@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,18 +11,34 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CommentForm from './CommentForm'
 import ShowComment from './ShowComment';
 
-function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked }) {
+function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
     const [commentActivate, setCommentActivate] = useState(false)
+    const [liked, setLiked] = useState(false)
 
     let player = list.players.find(element => element.name === selectedPlayer.full_name);
 
-
+    console.log(currentUser.likes)
     const showComment = () => {
         setCommentActivate(prev => !prev)
     }
 
+    const handleLikeClick = () => {
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
+        };
+        fetch(`api/likes`, configObj).then(r => r.json().then(setLiked(true)))
+    }
+    const handleUnlikeClick = () => {
+        fetch(`api/likes`, { method: "DELETE" })
+    }
+
     const handleAddToRoster = (e) => {
         e.preventDefault()
+        console.log(e)
         const configObj = {
             method: "POST",
             headers: {
@@ -69,6 +85,7 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked }) {
                                 </ul>
                             </Box>
                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                                {liked ? <Button onClick={handleUnlikeClick}>Unlike</Button> : <Button onClick={handleLikeClick}>Like</Button>}
                                 <Button onClick={handleCloseCard}>close</Button>
                                 <Button onClick={showComment}>Comment</Button>
                                 <Button onClick={handleAddToRoster}>Add To Roster</Button>
@@ -80,8 +97,8 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked }) {
             {
                 commentActivate &&
                 <div>
-                    <ShowComment comments={selectedPlayer.comments} currentUser={currentUser} />
-                    <CommentForm player={selectedPlayer} user_id={currentUser.id} />
+                    <ShowComment comments={comments} setComments={setComments} currentUser={currentUser} />
+                    <CommentForm player={selectedPlayer} user_id={currentUser.id} setComments={setComments} comments={comments} />
                 </div>
             }
 

@@ -31,9 +31,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function NavBar() {
+function NavBar({ setCurrentUser }) {
+
     const handleLogout = () => {
-        fetch("api/logout", { method: "DELETE" });
+        fetch("api/logout", { method: "DELETE" }).then(r => r.json()).then(setCurrentUser(null));
     }
     const classes = useStyles();
     return (

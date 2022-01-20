@@ -2,52 +2,72 @@ import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card'
 
 
-function ShowComment({ comments, currentUser }) {
+function ShowComment({ comments, currentUser, setComments }) {
     const [wantToUpdate, setWantToUpdate] = useState(false)
+    const [commentToUpdate, setCommentToUpdate] = useState([])
     const [item, setItem] = useState(0)
     const [commentForm, setCommentForm] = useState({
         content: "",
     })
+    // console.log(comments)
 
     const clickedUpdate = (comment) => {
         setItem(comment.id)
+        setCommentToUpdate(comment)
         setWantToUpdate(true)
     }
+    console.log(commentToUpdate)
+
     const handleDelete = (comment) => {
         fetch(`api/comments/${comment.id}`, { method: "DELETE" })
     }
-    const handleUpdate = () => {
+    const handleUpdate = (e) => {
+        e.preventDefault()
         const configObj = {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(commentForm),
+            body: JSON.stringify({ ...commentForm, player_id: item, user_id: currentUser.id }),
         };
-        fetch(`api/updateComment/${item}`, configObj).then(r => r.json())
-        setWantToUpdate(false)
+        fetch(`api/updateComment/${commentToUpdate.id}`, configObj).then(r => r.json()).then(data => {
+            console.log(commentToUpdate, data)
+            const tempComments = comments.map(comment => {
+                if (comment.id === data.id) {
+                    return data
+                } else {
+                    return comment
+                }
+            })
+            setComments(tempComments)
+            setCommentForm({
+                content: "",
+            })
+        })
     }
 
     const handleChange = (e) => {
         setCommentForm({ ...commentForm, [e.target.name]: e.target.value })
     }
 
-    let everyComment = comments.map((comment) => {
-        return (
-            <Card>
-                <h1>{comment.get_player_user}</h1>
-                <Card.Text>{comment.content}</Card.Text>
-                {
-                    comment.user_id === currentUser.id ? (
-                        <div>
-                            <button onClick={e => handleDelete(comment)}>Delete</button>
-                            <button onClick={e => clickedUpdate(comment)}>Update</button>
-                        </div>
-                    ) : ""
-                }
-            </Card>
-        )
-    })
+
+    let everyComment
+        = comments.map((comment) => {
+            return (
+                <Card>
+                    <h1>{comment.get_player_user}</h1>
+                    <Card.Text>{comment.content}</Card.Text>
+                    {
+                        comment.user_id === currentUser.id ? (
+                            <div>
+                                <button onClick={e => handleDelete(comment)}>Delete</button>
+                                <button onClick={e => clickedUpdate(comment)}>Update</button>
+                            </div>
+                        ) : ""
+                    }
+                </Card>
+            )
+        })
 
 
 

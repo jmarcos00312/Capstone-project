@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 
 
 
-function Get_every_players({ setComments, setClicked, setSelectedPlayer }) {
+function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
     const [topScorer, setTopScorer] = useState([])
 
 
     const handleMoreDetails = (e) => {
         fetch(`api/players/${e}`).then(r => r.json()).then(data => {
-            setSelectedPlayer(data)
             setComments(data.comments)
+            setSelectedPlayer(data)
             setClicked(true)
         })
     }

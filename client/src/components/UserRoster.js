@@ -2,9 +2,9 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 
-function UserRoster({ userRoster }) {
+function UserRoster({ userRoster, setUserRoster }) {
     const handleDeleteFromRoster = (e) => {
-        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" });
+        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" }).then(r => r.json()).then(data => console.log(data))
     }
 
     const usersTeam = userRoster.map(element => {

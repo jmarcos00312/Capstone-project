@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import list from '../list.json'
 import './GetTeam.css'
 import Table from 'react-bootstrap/Table'
