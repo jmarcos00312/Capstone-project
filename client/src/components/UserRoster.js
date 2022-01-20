@@ -3,7 +3,6 @@ import Table from 'react-bootstrap/Table'
 
 
 function UserRoster({ userRoster }) {
-// console.log(roster)
     const handleDeleteFromRoster = (e) => {
         fetch(`api/create_user_rosters/${e}`, { method: "DELETE" });
     }

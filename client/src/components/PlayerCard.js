@@ -11,7 +11,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CommentForm from './CommentForm'
 import ShowComment from './ShowComment';
 
-function PlayerCard({ currentUser, selectedPlayer, clicked }) {
+function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked }) {
     const [commentActivate, setCommentActivate] = useState(false)
 
     let player = list.players.find(element => element.name === selectedPlayer.full_name);
@@ -33,8 +33,10 @@ function PlayerCard({ currentUser, selectedPlayer, clicked }) {
         fetch("api/create_user_rosters", configObj).then(r => r.json()).then()
     }
 
+    const handleCloseCard = () => {
+        setClicked(prev => !prev)
+    }
 
-    console.log(currentUser)
 
     return (
         <div className="each-card">
@@ -66,7 +68,7 @@ function PlayerCard({ currentUser, selectedPlayer, clicked }) {
                                 </ul>
                             </Box>
                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-
+                                <Button onClick={handleCloseCard}>close</Button>
                                 <Button onClick={showComment}>Comment</Button>
                                 <Button onClick={handleAddToRoster}>Add To Roster</Button>
                             </ButtonGroup>
@@ -74,14 +76,15 @@ function PlayerCard({ currentUser, selectedPlayer, clicked }) {
                     </CardContent>
                 </Card>
             }
-            {commentActivate &&
+            {
+                commentActivate &&
                 <div>
                     <ShowComment comments={selectedPlayer.comments} />
                     <CommentForm player={selectedPlayer} user_id={currentUser.id} />
                 </div>
             }
 
-        </div>
+        </div >
     )
 }
 

@@ -13,20 +13,28 @@ function Profile({ currentUser }) {
     const [userRoster, setUserRoster] = useState(currentUser.create_user_rosters)
     const [showPlayersOnTeam, setShowPlayersOnTeam] = useState(false)
     const [showTopPpg, setShowTopPpg] = useState(false)
+
+    const handleTeamsClick = () => {
+        setShowPlayersOnTeam(prev => !prev)
+    }
+    const handlePlayersClick = () => {
+        setShowTopPpg(prev => !prev)
+    }
+
+
     return (
         <div className="profile-container">
             <Navbar />
             <Hero />
-            <GetTeam />
-            {/* {selectedPlayer ? (
-                <PlayerCard selectedPlayer={selectedPlayer} />
-            ) : (
-                <div>
-                </div>
-            ) */}
+            <div className="team-or-playerBtn">
+                <button onClick={handlePlayersClick}>Players</button>
+                <button onClick={handleTeamsClick}>Teams</button>
+            </div>
+            <PlayerCard currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setClicked={setClicked}  />
+            {showPlayersOnTeam && <GetTeam />}
+            {showTopPpg && <GetEveryPlayers setComments={setComments} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />}
             <UserRoster userRoster={userRoster} />
-            <PlayerCard currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setSelectedPlayer={setSelectedPlayer} />
-            <GetEveryPlayers setComments={setComments} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />
+            {/* <GetEveryPlayers setComments={setComments} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} /> */}
             {/* } */}
         </div>
     )

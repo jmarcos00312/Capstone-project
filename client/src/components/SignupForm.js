@@ -33,7 +33,6 @@ function SignupForm({ setCurrentUser }) {
         fetch("api/signup", configObj).then((resp) => {
             if (resp.ok) {
                 resp.json().then((user) => {
-                    console.log(user);
                     setCurrentUser(user);
                     setSignupForm({
                         first_name: "",
