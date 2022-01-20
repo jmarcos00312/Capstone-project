@@ -13,11 +13,11 @@ import ShowComment from './ShowComment';
 
 function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
     const [commentActivate, setCommentActivate] = useState(false)
+
     const [liked, setLiked] = useState(false)
 
     let player = list.players.find(element => element.name === selectedPlayer.full_name);
 
-    console.log(currentUser.likes)
     const showComment = () => {
         setCommentActivate(prev => !prev)
     }
