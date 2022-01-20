@@ -2,10 +2,9 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 
-function UserRoster({ userRoster }) {
-
+function UserRoster({ userRoster, setUserRoster }) {
     const handleDeleteFromRoster = (e) => {
-        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" });
+        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" }).then(r => r.json()).then(data => console.log(data))
     }
 
     const usersTeam = userRoster.map(element => {
@@ -22,7 +21,6 @@ function UserRoster({ userRoster }) {
             </tr>
         )
     })
-    // console.log(userRoster)
     return (
         <div style={{ color: 'white' }}>
             {usersTeam.length >= 1 ? (
@@ -30,15 +28,19 @@ function UserRoster({ userRoster }) {
                     <h1 style={{ color: 'white' }}>Your Roster</h1>
                     <Table className="content-table">
                         <thead>
-                            <th><h1><strong>Name</strong></h1></th>
-                            <th><h3><strong>Position</strong></h3></th>
-                            <th><h3><strong>Points per game</strong></h3></th>
-                            <th><h3><strong>Assists per game</strong></h3></th>
-                            <th><h3><strong>Rebounds per game</strong></h3></th>
-                            <th><h3><strong>Steals per game</strong></h3></th>
-                            <th><h3><strong>Blocks per game</strong></h3></th>
-                            {usersTeam}
+                            <tr>
+                                <th><h1><strong>Name</strong></h1></th>
+                                <th><h3><strong>Position</strong></h3></th>
+                                <th><h3><strong>Points per game</strong></h3></th>
+                                <th><h3><strong>Assists per game</strong></h3></th>
+                                <th><h3><strong>Rebounds per game</strong></h3></th>
+                                <th><h3><strong>Steals per game</strong></h3></th>
+                                <th><h3><strong>Blocks per game</strong></h3></th>
+                            </tr>
                         </thead>
+                        <tbody>
+                            {usersTeam}
+                        </tbody>
                     </Table>
                 </div>
             ) : (

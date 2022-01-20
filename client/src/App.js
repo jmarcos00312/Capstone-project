@@ -17,7 +17,6 @@ function App() {
         res.json().then((user) => {
           setCurrentUser(user);
         });
-      } else {
       }
     });
   }, []);
@@ -27,7 +26,7 @@ function App() {
     <div className="App">
       {currentUser ? (
         <div>
-          <Profile currentUser={currentUser} />
+          <Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </div>
       ) : (
         <div className="login-page">
@@ -43,9 +42,6 @@ function App() {
           currentUser={currentUser}
         />} />
       </Routes>
-
-      {/* <SignupForm /> */}
-
     </div>
   );
 }

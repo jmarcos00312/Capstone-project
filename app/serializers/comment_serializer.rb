@@ -1,5 +1,10 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :content, :get_player_name, :get_player_user, :user_id
+  attributes :id,
+             :content,
+             :get_player_name,
+             :get_player_user,
+             :user_id,
+             :player_id
 
   def get_player_name
     object.player.full_name

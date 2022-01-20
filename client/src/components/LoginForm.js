@@ -52,7 +52,6 @@ function LoginForm({ currentUser, setCurrentUser }) {
     }
 
     const handleChange = (e) => {
-        console.log(e.target.value);
         setLogInForm({ ...logInForm, [e.target.name]: e.target.value })
     }
 

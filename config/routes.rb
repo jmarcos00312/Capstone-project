@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     post '/add_comment/:id', to: 'comments#create'
     patch '/players/:id/like', to: 'players#get_player_like_count'
     patch 'user_liked', to: 'users#add_to_user_like_list'
+    patch 'updateComment/:id', to: 'comments#update'
     get 'by_assists', to: 'players#by_apg'
     get 'by_efg', to: 'players#by_efg'
     get 'by_team/:team', to: 'players#by_team'

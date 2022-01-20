@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -12,18 +11,34 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CommentForm from './CommentForm'
 import ShowComment from './ShowComment';
 
-function PlayerCard({ currentUser, selectedPlayer, clicked }) {
+function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
     const [commentActivate, setCommentActivate] = useState(false)
 
-    let player = list.players.find(element => element.name === selectedPlayer.full_name);
+    const [liked, setLiked] = useState(false)
 
+    let player = list.players.find(element => element.name === selectedPlayer.full_name);
 
     const showComment = () => {
         setCommentActivate(prev => !prev)
     }
 
+    const handleLikeClick = () => {
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
+        };
+        fetch(`api/likes`, configObj).then(r => r.json().then(setLiked(true)))
+    }
+    const handleUnlikeClick = () => {
+        fetch(`api/likes`, { method: "DELETE" })
+    }
+
     const handleAddToRoster = (e) => {
         e.preventDefault()
+        console.log(e)
         const configObj = {
             method: "POST",
             headers: {
@@ -34,8 +49,11 @@ function PlayerCard({ currentUser, selectedPlayer, clicked }) {
         fetch("api/create_user_rosters", configObj).then(r => r.json()).then()
     }
 
+    const handleCloseCard = () => {
+        setClicked(prev => !prev)
+        setCommentActivate(prev => !prev)
+    }
 
-    console.log(currentUser)
 
     return (
         <div className="each-card">
@@ -67,7 +85,8 @@ function PlayerCard({ currentUser, selectedPlayer, clicked }) {
                                 </ul>
                             </Box>
                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-
+                                {liked ? <Button onClick={handleUnlikeClick}>Unlike</Button> : <Button onClick={handleLikeClick}>Like</Button>}
+                                <Button onClick={handleCloseCard}>close</Button>
                                 <Button onClick={showComment}>Comment</Button>
                                 <Button onClick={handleAddToRoster}>Add To Roster</Button>
                             </ButtonGroup>
@@ -75,10 +94,11 @@ function PlayerCard({ currentUser, selectedPlayer, clicked }) {
                     </CardContent>
                 </Card>
             }
-            {commentActivate &&
+            {
+                commentActivate &&
                 <div>
-                    <ShowComment comments={selectedPlayer.comments} />
-                    <CommentForm player={selectedPlayer} user_id={currentUser.id} />
+                    <ShowComment comments={comments} setComments={setComments} currentUser={currentUser} />
+                    <CommentForm player={selectedPlayer} user_id={currentUser.id} setComments={setComments} comments={comments} />
                 </div>
             }
 
