@@ -8,7 +8,6 @@ function ShowComment({ comments, currentUser }) {
     const [commentForm, setCommentForm] = useState({
         content: "",
     })
-    let commentPlayerid
 
     const clickedUpdate = (comment) => {
         setItem(comment.id)
