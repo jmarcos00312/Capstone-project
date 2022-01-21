@@ -1,9 +1,12 @@
 .team-image {
+  width: 70%;
+  height: 10%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   border: 1px solid pink;
+  padding-bottom: 50px;
   /* max-height: 200px; */
 }
 
@@ -12,4 +15,10 @@
   height: 100px;
   background-color: burlywood;
   border: 1px solid black;
+}
+.team-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

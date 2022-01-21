@@ -11,7 +11,7 @@ class Api::CreateUserRostersController < ApplicationController
   def destroy
     in_roster_player = CreateUserRoster.find(params[:id])
     in_roster_player.destroy
-    render json: "deleted"
+    render json: 'deleted'
   end
 
   private

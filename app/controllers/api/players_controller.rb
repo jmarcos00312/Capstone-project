@@ -1,6 +1,7 @@
 class Api::PlayersController < ApplicationController
   def index
-    players = Player.order(ppg: :desc).limit(15)
+    players =
+      Player.order(ppg: :desc).limit(params[:limit]).offset(params[:offset])
     render json: players
   end
 

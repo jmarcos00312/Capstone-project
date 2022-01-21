@@ -14,7 +14,9 @@ class Api::UsersController < ApplicationController
       render json: user
     else
       user.destroy
-      render json: 'favorite player or team is does not exist',
+      render json: {
+               errors: 'favorite player or team does not exist make sure you are writing their name correctly (Example: Damian Lillard and Los Angeles Lakers) ',
+             },
              status: :unprocessable_entity
     end
   end

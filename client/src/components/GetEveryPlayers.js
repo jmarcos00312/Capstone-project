@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import "./Get_every_player.css"
 import Table from 'react-bootstrap/Table'
-import { Link } from "react-router-dom";
-
+import { Player } from '@lottiefiles/react-lottie-player';
 
 
 
 
 function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
-    const [topScorer, setTopScorer] = useState([])
+    const [players, setPlayers] = useState([])
+    const [offset, setOffset] = useState(0)
+    const limit = 25
 
+    useEffect(() => {
+        fetch(`api/players?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
+            setPlayers(data)
+        })
+    }, [offset])
 
+    const handleNext = () => {
+        setOffset(offset + limit)
+    }
+    const handlePrev = () => {
+        setOffset(offset - limit)
+    }
     const handleMoreDetails = (e) => {
         fetch(`api/players/${e}`).then(r => r.json()).then(data => {
             setComments(data.comments)
@@ -18,18 +30,13 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
             setClicked(true)
         })
     }
-    useEffect(() => {
-        fetch("api/players").then(r => r.json()).then(setTopScorer)
-    }, [])
 
-    const topPPGplayers = topScorer.map(player => {
+    const topPPGplayers = players.map(player => {
         return (
             <tr>
-                <div className="button-div">
-                    <Link to="/moreDetails" >
-                        <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
-                    </Link>
-                </div>
+                <td className="button-div">
+                    <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
+                </td>
                 <td>{player.team}</td>
                 <td>{player.full_name}</td>
                 <td>{player.pos}</td>
@@ -47,10 +54,23 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
     return (
         <div>
             <h1 style={{ color: 'white' }}>Players</h1>
+            <div className="next-prev-buttons">
+                <button onClick={handlePrev}>Previous</button>
+                <button onClick={handleNext}>Next</button>
+            </div>
             <Table className="content-table">
                 <thead>
                     <tr>
-                        <th id="ball">🏀</th>
+                        <th id="ball">
+                            <Player
+                                autoplay
+                                loop
+                                src="https://assets7.lottiefiles.com/packages/lf20_kfjqfnq9.json"
+                                style={{ height: '100px', width: '100px' }}
+                                speed={1}
+                            >
+                            </Player>
+                        </th>
                         <th><h1>Team</h1></th>
                         <th><h1><strong>Name</strong></h1></th>
                         <th><h3><strong>Position</strong></h3></th>
@@ -67,10 +87,7 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
                     {topPPGplayers}
                 </tbody>
             </Table>
-            <div className="footer-buttons">
-                <button>Previous</button>
-                <button>Next</button>
-            </div>
+
         </div>
     )
 }

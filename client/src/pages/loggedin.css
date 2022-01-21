@@ -1,0 +1,7 @@
+.players-team {
+  margin: 10px;
+}
+.team-or-playerBtn {
+  display: flex;
+  justify-content: space-evenly;
+}

@@ -3,8 +3,13 @@ import Table from 'react-bootstrap/Table'
 
 
 function UserRoster({ userRoster, setUserRoster }) {
+
     const handleDeleteFromRoster = (e) => {
-        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" }).then(r => r.json()).then(data => console.log(data))
+        console.log(e)
+        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" }).then(data => {
+            const roster = userRoster.filter(player => player.id !== e )
+            setUserRoster(roster)
+        })
     }
 
     const usersTeam = userRoster.map(element => {
@@ -29,6 +34,7 @@ function UserRoster({ userRoster, setUserRoster }) {
                     <Table className="content-table">
                         <thead>
                             <tr>
+                                
                                 <th><h1><strong>Name</strong></h1></th>
                                 <th><h3><strong>Position</strong></h3></th>
                                 <th><h3><strong>Points per game</strong></h3></th>
