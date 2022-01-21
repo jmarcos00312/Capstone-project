@@ -14,27 +14,12 @@ import ShowComment from './ShowComment';
 function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
     const [commentActivate, setCommentActivate] = useState(false)
 
-    const [liked, setLiked] = useState(false)
-
     let player = list.players.find(element => element.name === selectedPlayer.full_name);
 
     const showComment = () => {
         setCommentActivate(prev => !prev)
     }
 
-    const handleLikeClick = () => {
-        const configObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
-        };
-        fetch(`api/likes`, configObj).then(r => r.json().then(setLiked(true)))
-    }
-    const handleUnlikeClick = () => {
-        fetch(`api/likes`, { method: "DELETE" })
-    }
 
     const handleAddToRoster = (e) => {
         e.preventDefault()
@@ -46,6 +31,7 @@ function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, cl
             },
             body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
         };
+        
         fetch("api/create_user_rosters", configObj).then(r => r.json()).then(data => {
             console.log(data)
             setUserRoster([data, ...userRoster])
@@ -54,7 +40,6 @@ function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, cl
 
     const handleCloseCard = () => {
         setClicked(prev => !prev)
-        setCommentActivate(prev => !prev)
     }
 
 
@@ -88,7 +73,6 @@ function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, cl
                                 </ul>
                             </Box>
                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                {liked ? <Button onClick={handleUnlikeClick}>Unlike</Button> : <Button onClick={handleLikeClick}>Like</Button>}
                                 <Button onClick={handleCloseCard}>close</Button>
                                 <Button onClick={showComment}>Comment</Button>
                                 <Button onClick={handleAddToRoster}>Add To Roster</Button>

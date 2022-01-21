@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import "./Get_every_player.css"
 import Table from 'react-bootstrap/Table'
-import { Link } from "react-router-dom";
 import { Player } from '@lottiefiles/react-lottie-player';
 
 
 
 
 function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
-    // const [offset, setOffset] = useState(0)
     const [players, setPlayers] = useState([])
     const [offset, setOffset] = useState(0)
     const limit = 25
@@ -37,9 +35,7 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
         return (
             <tr>
                 <td className="button-div">
-                    <Link to="/moreDetails" >
-                        <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
-                    </Link>
+                    <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
                 </td>
                 <td>{player.team}</td>
                 <td>{player.full_name}</td>
@@ -58,6 +54,10 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
     return (
         <div>
             <h1 style={{ color: 'white' }}>Players</h1>
+            <div className="next-prev-buttons">
+                <button onClick={handlePrev}>Previous</button>
+                <button onClick={handleNext}>Next</button>
+            </div>
             <Table className="content-table">
                 <thead>
                     <tr>
@@ -67,7 +67,7 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
                                 loop
                                 src="https://assets7.lottiefiles.com/packages/lf20_kfjqfnq9.json"
                                 style={{ height: '100px', width: '100px' }}
-                                speed={.7}
+                                speed={1}
                             >
                             </Player>
                         </th>
@@ -87,10 +87,7 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
                     {topPPGplayers}
                 </tbody>
             </Table>
-            <div className="footer-buttons">
-                <button onClick={handlePrev}>Previous</button>
-                <button onClick={handleNext}>Next</button>
-            </div>
+
         </div>
     )
 }

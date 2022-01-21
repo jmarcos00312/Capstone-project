@@ -34,6 +34,7 @@ function UserRoster({ userRoster, setUserRoster }) {
                     <Table className="content-table">
                         <thead>
                             <tr>
+                                
                                 <th><h1><strong>Name</strong></h1></th>
                                 <th><h3><strong>Position</strong></h3></th>
                                 <th><h3><strong>Points per game</strong></h3></th>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import LoginFrom from "./components/LoginForm"
+import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import { Routes, Route } from "react-router-dom";
 import LoggedIn from './pages/LoggedIn';
+import { Link } from "react-router-dom";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -24,23 +25,12 @@ function App() {
 
   return (
     <div className="App">
-      {currentUser ? (
-        <div>
-          <LoggedIn currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        </div>
-      ) : (
-        <div className="login-page">
-          <LoginFrom
-            setCurrentUser={setCurrentUser}
-            currentUser={currentUser}
-          />
-        </div>)}
+      {currentUser ? (<LoggedIn currentUser={currentUser} setCurrentUser={setCurrentUser} />)
+        :
+        (<LoginForm setCurrentUser={setCurrentUser} currentUser={currentUser} />
+        )}
       <Routes>
-        <Route exact path="/signup" element={!currentUser && <SignupForm setCurrentUser={setCurrentUser} />} />
-        {/* <Route exact path="/login" element={<LoginFrom
-          setCurrentUser={setCurrentUser}
-          currentUser={currentUser}
-        />} /> */}
+        <Route path="/signup" element={!currentUser && <SignupForm setCurrentUser={setCurrentUser} />} />
       </Routes>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './signupForm.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function SignupForm({ setCurrentUser }) {
     const [signupForm, setSignupForm] = useState({
@@ -13,7 +13,7 @@ function SignupForm({ setCurrentUser }) {
         favorite_team: "",
         admin: false,
     })
-
+    const navigate = useNavigate()
     const handleChange = (e) => {
         setSignupForm({ ...signupForm, [e.target.name]: e.target.value })
     }
@@ -34,6 +34,7 @@ function SignupForm({ setCurrentUser }) {
             if (resp.ok) {
                 resp.json().then((user) => {
                     setCurrentUser(user);
+                    navigate("/profile")
                     setSignupForm({
                         first_name: "",
                         last_name: "",
@@ -47,7 +48,8 @@ function SignupForm({ setCurrentUser }) {
                 });
             } else {
                 resp.json().then((errors) => {
-                    console.error(errors);
+                    alert(errors.errors)
+                    console.log(errors);
                 });
             }
         });

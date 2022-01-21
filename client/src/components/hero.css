@@ -1,3 +1,4 @@
-/* .hero-container{
-    height:
-} */
+.hero-container {
+  display: flex;
+  justify-content: center;
+}

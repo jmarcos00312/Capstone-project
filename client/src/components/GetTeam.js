@@ -2,16 +2,33 @@ import React, { useState } from 'react'
 import list from '../list.json'
 import './GetTeam.css'
 import Table from 'react-bootstrap/Table'
+import { Player } from '@lottiefiles/react-lottie-player';
+import Hero from '../components/Hero'
 
-function GetTeam() {
+
+function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUserRoster, userRoster, currentUser, selectedPlayer, clicked }) {
     const [playersOnTeam, setPlayersOnTeam] = useState([])
 
     const handleClickTeam = (e) => {
-        fetch(`api/by_team/${e}`).then(r => r.json().then(data => setPlayersOnTeam(data)))
+        fetch(`api/by_team/${e}`).then(r => r.json().then(data => {
+            setPlayersOnTeam(data)
+        }))
+    }
+    const handleMoreDetails = (e) => {
+        fetch(`api/players/${e}`).then(r => r.json()).then(data => {
+            setComments(data.comments)
+            setSelectedPlayer(data)
+            setClicked(true)
+        })
+            
+
     }
     const everyTeamPlayers = playersOnTeam.map(player => {
         return (
             <tr>
+                <td className="button-div">
+                    <button onClick={(e) => handleMoreDetails(player.id)}>More Details</button>
+                </td>
                 <td>{player.full_name}</td>
                 <td>{player.pos}</td>
                 <td>{player.mpg}</td>
@@ -37,15 +54,26 @@ function GetTeam() {
 
     return (
         <div className="team-image-container">
+            <Hero />
             <div className="team-image">
-                {eachTeams}
+                <div className="image-container">
+                    {eachTeams}
+                </div>
                 <br />
-                <h1 id="ball">🏀</h1>
                 {playersOnTeam.length > 0 &&
                     <Table className="content-table">
                         <thead>
-
                             <tr>
+                                <th id="ball">
+                                    <Player
+                                        autoplay
+                                        loop
+                                        src="https://assets7.lottiefiles.com/packages/lf20_kfjqfnq9.json"
+                                        style={{ height: '100px', width: '100px' }}
+                                        speed={.7}
+                                    >
+                                    </Player>
+                                </th>
                                 <th><h1><strong>Name</strong></h1></th>
                                 <th><h3><strong>Position</strong></h3></th>
                                 <th><h3><strong>Minutes per game</strong></h3></th>
