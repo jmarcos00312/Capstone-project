@@ -44,7 +44,6 @@ function SignupForm({ setCurrentUser }) {
                         favorite_team: "",
                         admin: false,
                     })
-                    window.location.reload(false)
                 });
             } else {
                 resp.json().then((errors) => {

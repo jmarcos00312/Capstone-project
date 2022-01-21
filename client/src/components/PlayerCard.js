@@ -11,7 +11,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CommentForm from './CommentForm'
 import ShowComment from './ShowComment';
 
-function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
+function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
     const [commentActivate, setCommentActivate] = useState(false)
 
     const [liked, setLiked] = useState(false)
@@ -38,7 +38,7 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments
 
     const handleAddToRoster = (e) => {
         e.preventDefault()
-        console.log(e)
+        console.log(e.target)
         const configObj = {
             method: "POST",
             headers: {
@@ -46,7 +46,10 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments
             },
             body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
         };
-        fetch("api/create_user_rosters", configObj).then(r => r.json()).then()
+        fetch("api/create_user_rosters", configObj).then(r => r.json()).then(data => {
+            console.log(data)
+            setUserRoster([data, ...userRoster])
+        })
     }
 
     const handleCloseCard = () => {

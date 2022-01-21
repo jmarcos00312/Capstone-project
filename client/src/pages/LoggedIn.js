@@ -6,9 +6,9 @@ import PlayerCard from '../components/PlayerCard';
 import UserRoster from '../components/UserRoster';
 import GetTeam from '../components/GetTeam';
 import Button from '@material-ui/core/Button';
-import './profile.css'
+import './loggedin.css'
 
-function Profile({ currentUser, setCurrentUser }) {
+function LoggedIn({ currentUser, setCurrentUser }) {
     const [selectedPlayer, setSelectedPlayer] = useState({})
     const [clicked, setClicked] = useState(false)
     const [comments, setComments] = useState([])
@@ -26,7 +26,7 @@ function Profile({ currentUser, setCurrentUser }) {
 
 
     return (
-        <div className="profile-container">
+        <div className="LoggedIn.js-container">
             <Navbar setCurrentUser={setCurrentUser} />
             <div className="players-team" style={{ color: 'white' }}>
                 <h1 >{currentUser.username}</h1>
@@ -38,7 +38,7 @@ function Profile({ currentUser, setCurrentUser }) {
                 <Button variant="contained" onClick={handlePlayersClick}>Players</Button>
                 <Button variant="contained" onClick={handleTeamsClick}>Teams</Button>
             </div>
-            <PlayerCard currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setClicked={setClicked} comments={comments} setComments={setComments} />
+            <PlayerCard setUserRoster={setUserRoster} userRoster={userRoster} currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setClicked={setClicked} comments={comments} setComments={setComments} />
             {showPlayersOnTeam && <GetTeam />}
             {showTopPpg && <GetEveryPlayers setComments={setComments} selectedPlayer={selectedPlayer} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />}
             <UserRoster userRoster={userRoster} setUserRoster={setUserRoster} />
@@ -46,4 +46,4 @@ function Profile({ currentUser, setCurrentUser }) {
     )
 }
 
-export default Profile
+export default LoggedIn

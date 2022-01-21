@@ -1,4 +1,6 @@
 import React from 'react'
+import './hero.css'
+
 // import { player } from "@lottiefiles/lottie-player"
 
 function Hero() {

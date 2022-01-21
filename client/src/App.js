@@ -3,7 +3,7 @@ import './App.css';
 import LoginFrom from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import { Routes, Route } from "react-router-dom";
-import Profile from './pages/Profile';
+import LoggedIn from './pages/LoggedIn';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -15,7 +15,7 @@ function App() {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user);
+          setCurrentUser(user)
         });
       }
     });
@@ -26,7 +26,7 @@ function App() {
     <div className="App">
       {currentUser ? (
         <div>
-          <Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          <LoggedIn currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </div>
       ) : (
         <div className="login-page">
@@ -36,11 +36,11 @@ function App() {
           />
         </div>)}
       <Routes>
-        <Route path="/signup" element={!currentUser && <SignupForm setCurrentUser={setCurrentUser} />} />
-        <Route path="/login" element={<LoginFrom
+        <Route exact path="/signup" element={!currentUser && <SignupForm setCurrentUser={setCurrentUser} />} />
+        {/* <Route exact path="/login" element={<LoginFrom
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
-        />} />
+        />} /> */}
       </Routes>
     </div>
   );
