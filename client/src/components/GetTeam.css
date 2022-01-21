@@ -1,4 +1,6 @@
 .team-image {
+  width: 70%;
+  height: 10%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -12,4 +14,8 @@
   height: 100px;
   background-color: burlywood;
   border: 1px solid black;
+}
+.team-image-container {
+  display: flex;
+  justify-content: center;
 }

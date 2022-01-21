@@ -36,30 +36,32 @@ function GetTeam() {
 
 
     return (
-        <div className="team-image">
-            {eachTeams}
-            <br />
-            <h1 id="ball">🏀</h1>
-            {playersOnTeam.length > 0 &&
-                <Table className="content-table">
-                    <thead>
+        <div className="team-image-container">
+            <div className="team-image">
+                {eachTeams}
+                <br />
+                <h1 id="ball">🏀</h1>
+                {playersOnTeam.length > 0 &&
+                    <Table className="content-table">
+                        <thead>
 
-                        <tr>
-                            <th><h1><strong>Name</strong></h1></th>
-                            <th><h3><strong>Position</strong></h3></th>
-                            <th><h3><strong>Minutes per game</strong></h3></th>
-                            <th><h3><strong>Points per game</strong></h3></th>
-                            <th><h3><strong>Assists per game</strong></h3></th>
-                            <th><h3><strong>Rebounds per game</strong></h3></th>
-                            <th><h3><strong>Steals per game</strong></h3></th>
-                            <th><h3><strong>Blocks per game</strong></h3></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {everyTeamPlayers}
-                    </tbody>
-                </Table>
-            }
+                            <tr>
+                                <th><h1><strong>Name</strong></h1></th>
+                                <th><h3><strong>Position</strong></h3></th>
+                                <th><h3><strong>Minutes per game</strong></h3></th>
+                                <th><h3><strong>Points per game</strong></h3></th>
+                                <th><h3><strong>Assists per game</strong></h3></th>
+                                <th><h3><strong>Rebounds per game</strong></h3></th>
+                                <th><h3><strong>Steals per game</strong></h3></th>
+                                <th><h3><strong>Blocks per game</strong></h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {everyTeamPlayers}
+                        </tbody>
+                    </Table>
+                }
+            </div>
         </div>
     )
 }

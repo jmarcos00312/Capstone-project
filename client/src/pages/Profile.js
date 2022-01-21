@@ -5,6 +5,8 @@ import Hero from '../components/Hero'
 import PlayerCard from '../components/PlayerCard';
 import UserRoster from '../components/UserRoster';
 import GetTeam from '../components/GetTeam';
+import Button from '@material-ui/core/Button';
+import './profile.css'
 
 function Profile({ currentUser, setCurrentUser }) {
     const [selectedPlayer, setSelectedPlayer] = useState({})
@@ -26,15 +28,15 @@ function Profile({ currentUser, setCurrentUser }) {
     return (
         <div className="profile-container">
             <Navbar setCurrentUser={setCurrentUser} />
-            <div className="userInfo" style={{ color: 'white' }}>
+            <div className="players-team" style={{ color: 'white' }}>
                 <h1 >{currentUser.username}</h1>
                 <h3>Favorite Team: {currentUser.favorite_team}</h3>
                 <h3>Favorite Player: {currentUser.favorite_player}</h3>
             </div>
             <Hero />
             <div className="team-or-playerBtn">
-                <button onClick={handlePlayersClick}>Players</button>
-                <button onClick={handleTeamsClick}>Teams</button>
+                <Button variant="contained" onClick={handlePlayersClick}>Players</Button>
+                <Button variant="contained" onClick={handleTeamsClick}>Teams</Button>
             </div>
             <PlayerCard currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setClicked={setClicked} comments={comments} setComments={setComments} />
             {showPlayersOnTeam && <GetTeam />}
