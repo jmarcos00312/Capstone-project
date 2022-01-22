@@ -93,15 +93,15 @@ function LoginForm({ currentUser, setCurrentUser }) {
                             />
                         </div>
                         <p>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                            >
-                                Sign In
-                            </Button>
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                >
+                                    Sign In
+                                </Button>
                         </p>
                         <p>Don't have an account?</p>
                         <p>

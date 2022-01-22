@@ -3,7 +3,6 @@ import list from '../list.json'
 import './GetTeam.css'
 import Table from 'react-bootstrap/Table'
 import { Player } from '@lottiefiles/react-lottie-player';
-import Hero from '../components/Hero'
 
 
 function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUserRoster, userRoster, currentUser, selectedPlayer, clicked }) {
@@ -20,7 +19,7 @@ function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUser
             setSelectedPlayer(data)
             setClicked(true)
         })
-            
+
 
     }
     const everyTeamPlayers = playersOnTeam.map(player => {
@@ -45,6 +44,7 @@ function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUser
         return (
             <button onClick={e => handleClickTeam(element.abbrev)}>
                 <img className="per-team" alt={element.name} src={element.imgURLSmall} />
+
             </button>
         )
     })
@@ -54,7 +54,6 @@ function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUser
 
     return (
         <div className="team-image-container">
-            <Hero />
             <div className="team-image">
                 <div className="image-container">
                     {eachTeams}

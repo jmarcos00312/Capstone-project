@@ -4,7 +4,6 @@ import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import { Routes, Route } from "react-router-dom";
 import LoggedIn from './pages/LoggedIn';
-import { Link } from "react-router-dom";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -25,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+
       {currentUser ? (<LoggedIn currentUser={currentUser} setCurrentUser={setCurrentUser} />)
         :
         (<LoginForm setCurrentUser={setCurrentUser} currentUser={currentUser} />

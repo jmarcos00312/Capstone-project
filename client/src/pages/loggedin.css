@@ -1,7 +1,24 @@
+.wholeContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
 .players-team {
   margin: 10px;
 }
 .team-or-playerBtn {
   display: flex;
   justify-content: space-evenly;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex: 80%;
+  border: 4px solid rgb(76, 194, 106);
+}
+.sidebar-container {
+  display: flex;
+  flex: 20%;
+  border: 4px solid grey;
 }
