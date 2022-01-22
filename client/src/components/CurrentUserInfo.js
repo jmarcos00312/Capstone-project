@@ -11,7 +11,6 @@ function CurrentUserInfo({ currentUser, userRoster }) {
     const [teamPic, setTeamPic] = useState('')
     useEffect(() => {
         fetch(`api/get_team_name/${currentUser.favorite_team}`).then(r => r.json().then(data => setTeamPic(data.imageURL)))
-
     }, [teamPic])
     //////////////////
     const handleAwardClick = () => {
@@ -27,10 +26,6 @@ function CurrentUserInfo({ currentUser, userRoster }) {
     //////////////////////
     return (
         <div className="User-info">
-            <div>
-                <h1>{currentUser.first_name} {currentUser.last_name}</h1>
-            </div>
-            <hr />
             <Card className="mb-2">
                 <Card.Img variant="top" src={favoritePlayer.imgURL} />
                 <Card.Body>

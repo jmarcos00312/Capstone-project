@@ -11,7 +11,6 @@ function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUser
     const handleClickTeam = (e) => {
         fetch(`api/by_team/${e}`).then(r => r.json().then(data => {
             setPlayersOnTeam(data)
-            console.log(data)
         }))
     }
     const handleMoreDetails = (e) => {

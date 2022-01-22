@@ -38,7 +38,7 @@ function NavBar({ setCurrentUser }) {
     }
     const classes = useStyles();
     return (
-        <AppBar position="static" style={{ background: '#2E3B55' }}>
+        <AppBar position="fixed" style={{ background: '#2E3B55' }}>
             <CssBaseline />
             <Toolbar>
                 <Typography variant="h4" className={classes.logo}>

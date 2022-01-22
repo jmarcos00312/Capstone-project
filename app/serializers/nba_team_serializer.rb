@@ -1,3 +1,3 @@
 class NbaTeamSerializer < ActiveModel::Serializer
-  attributes :id, :name, :team_abbr
+  attributes :id, :name, :team_abbr, :imageURL
 end
