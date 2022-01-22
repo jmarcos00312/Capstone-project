@@ -74,8 +74,6 @@ NbaTeam.create(name: 'Utah Jazz', team_abbr: 'UTA')
 NbaTeam.create(name: 'Washington Wizards', team_abbr: 'WAS')
 
 puts 'creating users'
-
-
   User.create(
     first_name: 'Jeremiah',
     last_name: 'Marcos',
@@ -86,7 +84,6 @@ puts 'creating users'
     favorite_team: 'Los Angeles Lakers',
     admin: true,
   )
-# byebug
 
   User.create(
     first_name: 'other',
