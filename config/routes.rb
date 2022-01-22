@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     delete '/logout', to: 'sessions#destroy'
     get '/me', to: 'users#me'
 
+    get 'get_team_name/:name', to: 'nba_teams#team'
     get 'get_team/:team_abbr', to: 'nba_teams#show'
     get '/get_comments/:id', to: 'players#player_comments'
     post '/add_comment/:id', to: 'comments#create'

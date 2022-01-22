@@ -16,6 +16,7 @@
   padding: 30px;
   margin: 0;
   padding-top: 0;
+  padding-bottom: 0;
 }
 .mb-2 .stats-2021 h4 {
   padding: 10px;
@@ -50,7 +51,8 @@
   overflow: hidden;
   position: relative;
   padding: 1em 2em;
-  margin: 4em;
+  margin: 2em;
+  margin-top: 0.7em;
   text-transform: uppercase;
 }
 .every-awards {

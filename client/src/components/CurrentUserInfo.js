@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './currentUserInfo.css'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -8,7 +8,12 @@ import Button from 'react-bootstrap/Button'
 
 function CurrentUserInfo({ currentUser, userRoster }) {
     const [seeAwards, setSeeAwards] = useState(false)
+    const [teamPic, setTeamPic] = useState('')
+    useEffect(() => {
+        fetch(`api/get_team_name/${currentUser.favorite_team}`).then(r => r.json().then(data => setTeamPic(data.imageURL)))
 
+    }, [teamPic])
+    //////////////////
     const handleAwardClick = () => {
         setSeeAwards(prev => !prev)
     }
@@ -19,13 +24,12 @@ function CurrentUserInfo({ currentUser, userRoster }) {
         )
     })
     const stats = favoritePlayer.stats.at(-2)
-
-    console.log(stats)
-    console.log(stats.ptsMax[0])
-
+    //////////////////////
     return (
         <div className="User-info">
-            <h1>{currentUser.first_name} {currentUser.last_name}</h1>
+            <div>
+                <h1>{currentUser.first_name} {currentUser.last_name}</h1>
+            </div>
             <hr />
             <Card className="mb-2">
                 <Card.Img variant="top" src={favoritePlayer.imgURL} />

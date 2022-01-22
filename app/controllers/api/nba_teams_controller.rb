@@ -9,6 +9,10 @@ class Api::NbaTeamsController < ApplicationController
     team.update!(team_params)
     render json: newTeam, status: :created
   end
+  def team
+    team = NbaTeam.find_by(name: params[:name])
+    render json: team
+  end
   def show
     team = NbaTeam.find_by(team_abbr: params[:team_abbr])
     render json: team
