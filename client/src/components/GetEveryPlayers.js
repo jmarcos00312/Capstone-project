@@ -3,7 +3,6 @@ import "./Get_every_player.css"
 import Table from 'react-bootstrap/Table'
 import { Player } from '@lottiefiles/react-lottie-player';
 import Pagination from 'react-bootstrap/Pagination'
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
@@ -80,7 +79,7 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
             <h1 style={{ color: 'white' }}>Players</h1>
             <div className="next-prev-buttons">
                 {/* {buttonArray} */}
-                <Pagination size="sm">{items}</Pagination>
+                <Pagination size="sm" className="manual-pagination">{items}</Pagination>
                 {/* <button onClick={handlePrev}>Previous</button>
                 <button onClick={handleNext}>Next</button> */}
             </div>

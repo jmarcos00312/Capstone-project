@@ -50,7 +50,16 @@
   border: 1px solid red;
 }
 
-ul{
+ul {
   color: white;
   /* display: inline-flex; */
+}
+.manual-pagination {
+  text-decoration: none;
+  list-style: none;
+  display: inline-flex;
+  column-gap: 20px;
+  background-color: white;
+  color: black;
+  padding: 10px;
 }
