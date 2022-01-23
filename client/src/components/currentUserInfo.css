@@ -56,13 +56,13 @@
   text-transform: uppercase;
 }
 .every-awards {
+  height: 4em;
   width: 25em;
-  padding: 0.5em;
+  padding: 1.5em;
   margin: 0.5em;
   letter-spacing: 2px;
-  background-color: #ffeaa7;
-  background-image: linear-gradient(315deg, #ffeaa7 0%, #000000 74%);
-  border-radius: 60px;
+  background-color: #3a2524;
+  border-radius: 15px;
 }
 .list-group-flush {
   display: flex;

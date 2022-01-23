@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import './currentUserInfo.css'
 import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import list from "../list.json"
-import Button from 'react-bootstrap/Button'
 
-function CurrentUserInfo({ currentUser, userRoster }) {
-    const [seeAwards, setSeeAwards] = useState(false)
+
+function CurrentUserInfo({ currentUser }) {
+
     const [teamPic, setTeamPic] = useState('')
+
     useEffect(() => {
         fetch(`api/get_team_name/${currentUser.favorite_team}`).then(r => r.json().then(data => setTeamPic(data.imageURL)))
     }, [teamPic])
     //////////////////
-    const handleAwardClick = () => {
-        setSeeAwards(prev => !prev)
-    }
+
     const favoritePlayer = list.players.find(element => element.name === currentUser.favorite_player)
-    const awards = favoritePlayer.awards.map(element => {
-        return (
-            <ListGroupItem className="every-awards">{element.season} : <strong>{element.type}</strong></ListGroupItem>
-        )
-    })
+
     const stats = favoritePlayer.stats.at(-2)
     //////////////////////
     return (
@@ -45,17 +38,7 @@ function CurrentUserInfo({ currentUser, userRoster }) {
                     <Card.Text>
                     </Card.Text>
                 </Card.Body>
-                <Button className="award-button" onClick={handleAwardClick}>
-                    Awards
-                </Button>
-                {
-                    seeAwards &&
-                    <ListGroup className="list-group-flush">
-                        {awards}
-                    </ListGroup>
-                }
                 <Card.Body>
-
                 </Card.Body>
             </Card>
         </div>

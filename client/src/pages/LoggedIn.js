@@ -30,18 +30,6 @@ function LoggedIn({ currentUser, setCurrentUser }) {
                 </div>
                 <div className="main-container">
                     <CurrentUserInfo currentUser={currentUser} userRoster={userRoster} />
-                    <Hero />
-                    {/* <div className="team-or-playerBtn">
-                        <Link to='players'>
-                            <Button variant="contained" onClick={handlePlayersClick}>Players</Button>
-                        </Link>
-                        <Link to="/teams">
-                            <Button variant="contained" onClick={handleTeamsClick}>Teams</Button>
-                        </Link>
-                        <Link to="/profile">
-                            <Button variant="contained">Profile</Button>
-                    </div> */}
-                    {/* </Link> */}
                     <div className="player-details">
                         {selectedPlayer && <PlayerCard setUserRoster={setUserRoster} userRoster={userRoster} currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setClicked={setClicked} comments={comments} setComments={setComments} />}
                     </div>

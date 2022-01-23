@@ -17,7 +17,8 @@
   background-size: cover;
   opacity: 35%;
 }
-#name, #username {
+#name,
+#username {
   padding: 0;
   font-size: 30px;
 }
@@ -72,4 +73,43 @@ hr {
   justify-content: space-around;
   align-content: center;
   align-items: center;
+}
+.sideBar-awards-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.listgroup {
+  height: 500px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+}
+.listgroup::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: red;
+}
+.sideBar-awards-btn {
+  display: flex;
+  flex-direction: column;
+}
+.sideBar-awards-btn button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: xx-large;
+}
+#awards {
+  font-size: xx-large;
+  margin-bottom: 16px;
+}
+.awardAndBtn {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
 }
