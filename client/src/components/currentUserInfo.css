@@ -1,6 +1,7 @@
 .User-info {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   color: #fff;
   border: 1px solid red;
   padding: 100px;
@@ -32,6 +33,7 @@
 }
 
 .mb-2 {
+
   max-width: 500px;
   border: 1px solid blue;
   background-color: #2d3436;
@@ -41,20 +43,6 @@
   transition: 0.3s;
 }
 
-.award-button {
-  outline: 0;
-  border-radius: 50px;
-  font-size: 1.5em;
-  font-weight: 400;
-  font-family: "Roboto", sans-serif;
-  letter-spacing: 2px;
-  overflow: hidden;
-  position: relative;
-  padding: 1em 2em;
-  margin: 2em;
-  margin-top: 0.7em;
-  text-transform: uppercase;
-}
 .every-awards {
   height: 4em;
   width: 25em;

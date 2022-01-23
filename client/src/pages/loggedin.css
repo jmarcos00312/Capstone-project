@@ -20,5 +20,9 @@
 .sidebar-container {
   display: flex;
   flex: 20%;
-  border: 4px solid grey;
+}
+
+.wholeContainer {
+  border: none;
+  height: 100vh;
 }
