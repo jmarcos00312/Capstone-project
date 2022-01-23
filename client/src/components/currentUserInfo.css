@@ -1,11 +1,12 @@
 .User-info {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   color: #fff;
   border: 1px solid red;
   padding: 100px;
-  background-color: #000000;
-  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+  background-color: #201f1f;
+  /* background-image: linear-gradient(147deg, #000000 0%, #04619f 74%); */
 }
 
 .mb-2 .stats-2021 {
@@ -22,47 +23,44 @@
   padding: 10px;
   font-size: 20px;
   border-top: 1px;
+  margin-top: 0px;
 }
 .mb-2 h2 {
   margin-bottom: 0;
+  /* margin-top: ; */
 }
 .mb-2 .stats-2021 h4 strong {
   font-weight: bold;
   font-size: 30px;
 }
+.mb-2 img {
+  width: 330px;
+  height: 300px;
+  margin-top: 16px;
+}
 
 .mb-2 {
-  max-width: 500px;
+  display: flex;
+  flex-direction: row;
+  width: 65em;
+  height: 25em;
   border: 1px solid blue;
   background-color: #2d3436;
   background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
   border-radius: 60px;
   box-shadow: 2px 2px 5px red;
   transition: 0.3s;
+  padding: 30px;
 }
 
-.award-button {
-  outline: 0;
-  border-radius: 50px;
-  font-size: 1.5em;
-  font-weight: 400;
-  font-family: "Roboto", sans-serif;
-  letter-spacing: 2px;
-  overflow: hidden;
-  position: relative;
-  padding: 1em 2em;
-  margin: 2em;
-  margin-top: 0.7em;
-  text-transform: uppercase;
-}
 .every-awards {
+  height: 4em;
   width: 25em;
-  padding: 0.5em;
+  padding: 1.5em;
   margin: 0.5em;
   letter-spacing: 2px;
-  background-color: #ffeaa7;
-  background-image: linear-gradient(315deg, #ffeaa7 0%, #000000 74%);
-  border-radius: 60px;
+  background-color: #3a2524;
+  border-radius: 15px;
 }
 .list-group-flush {
   display: flex;
@@ -70,4 +68,12 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 40px;
+}
+.body-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.career-highs {
+  text-align: center;
 }

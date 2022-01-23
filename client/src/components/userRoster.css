@@ -1,0 +1,36 @@
+.user-roster-table {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 70px auto;
+  background-color: rgb(83 79 80 / 26%);
+  opacity: 100%;
+  box-shadow: 2px 2px 5px 2px rgb(0 0 0 / 37);
+}
+.user-roster-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.eject-button {
+  background: none;
+  border: white;
+  border-radius: 7px;
+  color: white;
+  border-width: medium;
+}
+.eject-button:hover {
+  background-color: #ae0f0f;
+  color: white;
+}
+
+.row td {
+  text-align: center;
+}
+
+.content-table th {
+  padding: 20px;
+}
+.user-roster-container h1 {
+  margin: 0px;
+}

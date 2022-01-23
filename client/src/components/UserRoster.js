@@ -1,20 +1,20 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-
+import './userRoster.css'
 
 function UserRoster({ userRoster, setUserRoster }) {
 
     const handleDeleteFromRoster = (e) => {
         console.log(e)
         fetch(`api/create_user_rosters/${e}`, { method: "DELETE" }).then(data => {
-            const roster = userRoster.filter(player => player.id !== e )
+            const roster = userRoster.filter(player => player.id !== e)
             setUserRoster(roster)
         })
     }
 
     const usersTeam = userRoster.map(element => {
         return (
-            <tr>
+            <tr className="row">
                 <td>{element.player.full_name}</td>
                 <td>{element.player.pos}</td>
                 <td>{element.player.ppg}</td>
@@ -22,31 +22,34 @@ function UserRoster({ userRoster, setUserRoster }) {
                 <td>{element.player.rpg}</td>
                 <td>{element.player.spg}</td>
                 <td>{element.player.bpg}</td>
-                <button onClick={e => handleDeleteFromRoster(element.id)}>delete</button>
+                <button className="eject-button" onClick={e => handleDeleteFromRoster(element.id)}>EJECT</button>
             </tr>
         )
     })
     return (
-        <div style={{ color: 'white' }}>
+        <div style={{ color: 'white' }} className="user-roster-table">
             {usersTeam.length >= 1 ? (
-                <div>
+                <div className="user-roster-container">
                     <h1 style={{ color: 'white' }}>Your Roster</h1>
                     <Table className="content-table">
-                        <thead>
-                            <tr>
-                                
-                                <th><h1><strong>Name</strong></h1></th>
-                                <th><h3><strong>Position</strong></h3></th>
-                                <th><h3><strong>Points per game</strong></h3></th>
-                                <th><h3><strong>Assists per game</strong></h3></th>
-                                <th><h3><strong>Rebounds per game</strong></h3></th>
-                                <th><h3><strong>Steals per game</strong></h3></th>
-                                <th><h3><strong>Blocks per game</strong></h3></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {usersTeam}
-                        </tbody>
+                        <div>
+                            <thead>
+                                <tr>
+
+                                    <th><h1><strong>Name</strong></h1></th>
+                                    <th><h3><strong>Position</strong></h3></th>
+                                    <th><h3><strong>Points per game</strong></h3></th>
+                                    <th><h3><strong>Assists per game</strong></h3></th>
+                                    <th><h3><strong>Rebounds per game</strong></h3></th>
+                                    <th><h3><strong>Steals per game</strong></h3></th>
+                                    <th><h3><strong>Blocks per game</strong></h3></th>
+                                    <th><h3><strong></strong></h3></th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                {usersTeam}
+                            </tbody>
+                        </div>
                     </Table>
                 </div>
             ) : (
