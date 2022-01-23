@@ -52,7 +52,7 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
     })
 
     return (
-        <div>
+        <div className="player-table">
             <h1 style={{ color: 'white' }}>Players</h1>
             <div className="next-prev-buttons">
                 <button onClick={handlePrev}>Previous</button>

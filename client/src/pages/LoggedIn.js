@@ -29,16 +29,15 @@ function LoggedIn({ currentUser, setCurrentUser }) {
                     <SideBar currentUser={currentUser} />
                 </div>
                 <div className="main-container">
-                    <CurrentUserInfo currentUser={currentUser} userRoster={userRoster} />
                     <div className="player-details">
                         {selectedPlayer && <PlayerCard setUserRoster={setUserRoster} userRoster={userRoster} currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setClicked={setClicked} comments={comments} setComments={setComments} />}
                     </div>
                     <Routes>
                         <Route path="/teams" comments={comments} element={<GetTeam selectedPlayer={selectedPlayer} clicked={clicked} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
                         <Route path="/players" element={<GetEveryPlayers setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
-                        <Route path="/profile" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} />
-                        <Route path="/contact-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} />
-                        <Route path="/about-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} />
+                        <Route path="/profile" element={<CurrentUserInfo currentUser={currentUser} userRoster={userRoster} />} />
+                        {/* <Route path="/contact-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} />
+                        <Route path="/about-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} /> */}
                     </Routes>
                 </div>
             </div>

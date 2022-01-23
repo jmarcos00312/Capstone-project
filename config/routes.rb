@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get 'by_team/:team', to: 'players#by_team'
     get 'top_scorer', to: 'players#top_scorer'
     get 'get_user/:id', to: 'users#show_name'
-
+    get 'find_by_name/:name', to: 'players#find_by_name'
 
     # get '/get_roster/:id', to: 'create_user_rosters#destroy'
 

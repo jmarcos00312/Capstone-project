@@ -30,6 +30,10 @@ class Api::PlayersController < ApplicationController
     players = Player.where(team: [params[:team]]).order(ppg: :desc)
     render json: players
   end
+  def find_by_name
+    player = Player.find_by_name(params[:name])
+    render json: player
+  end
 
   def show
     player = find_players
