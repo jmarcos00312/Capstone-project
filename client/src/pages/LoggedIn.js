@@ -35,7 +35,7 @@ function LoggedIn({ currentUser, setCurrentUser }) {
                     <Routes>
                         <Route path="/teams" comments={comments} element={<GetTeam selectedPlayer={selectedPlayer} clicked={clicked} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
                         <Route path="/players" element={<GetEveryPlayers setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
-                        <Route path="/profile" element={<CurrentUserInfo currentUser={currentUser} userRoster={userRoster} />} />
+                        <Route path="/profile" element={<CurrentUserInfo currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} />} />
                         {/* <Route path="/contact-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} />
                         <Route path="/about-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} /> */}
                     </Routes>

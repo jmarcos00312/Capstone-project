@@ -20,20 +20,7 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
         );
     }
 
-    // const active = 1
-    // const buttonArray = []
-    // const numberOfBtn = 24
-    // for (let i = 0; i >= numberOfBtn; i++) {
-    //     buttonArray.push(
-    //         <Pagination.Item key={i} active={i === active}>
-    //             {i}
-    //         </Pagination.Item>
-    //     )
 
-    // }
-    console.log('====================================');
-    console.log(items);
-    console.log('====================================');
     useEffect(() => {
         fetch(`api/players?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
             setPlayers(data)

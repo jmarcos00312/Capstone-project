@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :create_user_rosters, only: %i[destroy index create]
+    resources :create_user_rosters, only: %i[destroy index create show]
     resources :likes, only: %i[create destroy]
     resources :comments
     resources :users, only: %i[create index]

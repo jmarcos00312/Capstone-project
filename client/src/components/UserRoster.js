@@ -6,11 +6,13 @@ function UserRoster({ userRoster, setUserRoster }) {
 
     const handleDeleteFromRoster = (e) => {
         console.log(e)
-        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" }).then(data => {
-            const roster = userRoster.filter(player => player.id !== e)
-            setUserRoster(roster)
+        console.log(userRoster)
+        fetch(`api/create_user_rosters/${e}`, { method: "DELETE" }).then(() => {
+            const filteredPlayers = userRoster.filter(player => player.id !== e);
+            setUserRoster(filteredPlayers)
         })
     }
+
 
     const usersTeam = userRoster.map(element => {
         return (
@@ -35,7 +37,6 @@ function UserRoster({ userRoster, setUserRoster }) {
                         <div>
                             <thead>
                                 <tr>
-
                                     <th><h1><strong>Name</strong></h1></th>
                                     <th><h3><strong>Position</strong></h3></th>
                                     <th><h3><strong>Points per game</strong></h3></th>
