@@ -49,3 +49,8 @@
 .player-table {
   border: 1px solid red;
 }
+
+ul{
+  color: white;
+  /* display: inline-flex; */
+}

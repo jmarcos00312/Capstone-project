@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "./Get_every_player.css"
 import Table from 'react-bootstrap/Table'
 import { Player } from '@lottiefiles/react-lottie-player';
-
-
+import Pagination from 'react-bootstrap/Pagination'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
@@ -11,6 +11,30 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
     const [offset, setOffset] = useState(0)
     const limit = 25
 
+    let active = 1
+    let items = [];
+    for (let i = 1; i <= 24; i++) {
+        items.push(
+            <Pagination.Item key={i} active={i === active}>
+                {i}
+            </Pagination.Item>,
+        );
+    }
+
+    // const active = 1
+    // const buttonArray = []
+    // const numberOfBtn = 24
+    // for (let i = 0; i >= numberOfBtn; i++) {
+    //     buttonArray.push(
+    //         <Pagination.Item key={i} active={i === active}>
+    //             {i}
+    //         </Pagination.Item>
+    //     )
+
+    // }
+    console.log('====================================');
+    console.log(items);
+    console.log('====================================');
     useEffect(() => {
         fetch(`api/players?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
             setPlayers(data)
@@ -55,8 +79,10 @@ function Get_every_players({ setClicked, setSelectedPlayer, setComments }) {
         <div className="player-table">
             <h1 style={{ color: 'white' }}>Players</h1>
             <div className="next-prev-buttons">
-                <button onClick={handlePrev}>Previous</button>
-                <button onClick={handleNext}>Next</button>
+                {/* {buttonArray} */}
+                <Pagination size="sm">{items}</Pagination>
+                {/* <button onClick={handlePrev}>Previous</button>
+                <button onClick={handleNext}>Next</button> */}
             </div>
             <Table className="content-table">
                 <thead>
