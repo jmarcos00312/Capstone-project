@@ -20,7 +20,10 @@ function ShowComment({ comments, currentUser, setComments }) {
     console.log(commentToUpdate)
 
     const handleDelete = (comment) => {
-        fetch(`api/comments/${comment.id}`, { method: "DELETE" })
+        fetch(`api/comments/${comment.id}`, { method: "DELETE" }).then(() => {
+            const filteredPlayers = comments.filter(player => player.id !== comment.id);
+            setComments(filteredPlayers)
+        })
     }
     const handleUpdate = (e) => {
         e.preventDefault()
@@ -52,22 +55,22 @@ function ShowComment({ comments, currentUser, setComments }) {
     }
 
 
-    let everyComment= comments.reverse().map((comment) => {
-            return (
-                <Card className="every-single-comment">
-                    <h1>{comment.get_player_user}</h1>
-                    <Card.Text>{comment.content}</Card.Text>
-                    {
-                        comment.user_id === currentUser.id ? (
-                            <div>
-                                <button onClick={e => handleDelete(comment)}>Delete</button>
-                                <button onClick={e => clickedUpdate(comment)}>Update</button>
-                            </div>
-                        ) : ""
-                    }
-                </Card>
-            )
-        })
+    let everyComment = comments.reverse().map((comment) => {
+        return (
+            <Card className="every-single-comment">
+                <h1>{comment.get_player_user}</h1>
+                <Card.Text>{comment.content}</Card.Text>
+                {
+                    comment.user_id === currentUser.id ? (
+                        <div>
+                            <button onClick={e => handleDelete(comment)}>Delete</button>
+                            <button onClick={e => clickedUpdate(comment)}>Update</button>
+                        </div>
+                    ) : ""
+                }
+            </Card>
+        )
+    })
 
     return (
         <div className="comment-list">
