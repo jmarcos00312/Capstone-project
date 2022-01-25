@@ -52,7 +52,7 @@ function SideBar({ currentUser }) {
                             <img src={favteamPic.imageURL} alt={favteamPic.name} />
                         </div>
                         <div className="team-or-playerBtn">
-                            <Link to='players'>
+                            <Link to='/players'>
                                 <Button variant="contained" onClick={handlePlayersClick}>Players</Button>
                             </Link>
                             <Link to="/teams">

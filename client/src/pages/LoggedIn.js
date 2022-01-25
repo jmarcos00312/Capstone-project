@@ -29,26 +29,27 @@ function LoggedIn({ currentUser, setCurrentUser, isLoading, setIsLoading }) {
                 <SideBar currentUser={currentUser} />
             </div>
             <div className="main-container">
-                <div className="player-details">
-                            {selectedPlayer && <PlayerCard
-                                isLoading={isLoading}
-                                setIsLoading={setIsLoading}
-                                setUserRoster={setUserRoster}
-                                userRoster={userRoster}
-                                currentUser={currentUser}
-                                selectedPlayer={selectedPlayer}
-                                clicked={clicked}
-                                setClicked={setClicked}
-                                comments={comments}
-                                setComments={setComments}
-                            />
-                            }
-                        </div>
+                {selectedPlayer &&
+                    <div className="player-details">
+                        <PlayerCard
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                            setUserRoster={setUserRoster}
+                            userRoster={userRoster}
+                            currentUser={currentUser}
+                            selectedPlayer={selectedPlayer}
+                            clicked={clicked}
+                            setClicked={setClicked}
+                            comments={comments}
+                            setComments={setComments}
+                        />
+                    </div>
+                }
                 <Routes>
-                            <Route path="/teams" element={<GetTeam comments={comments} isLoading={isLoading} setIsLoading={setIsLoading} selectedPlayer={selectedPlayer} clicked={clicked} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
-                            <Route path="/players" element={<GetEveryPlayers isLoading={isLoading} setIsLoading={setIsLoading} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
-                            <Route path="/profile" element={<CurrentUserInfo isLoading={isLoading} setIsLoading={setIsLoading} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} />} />
-                        </Routes>
+                    <Route path="/teams" element={<GetTeam comments={comments} isLoading={isLoading} setIsLoading={setIsLoading} selectedPlayer={selectedPlayer} clicked={clicked} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
+                    <Route path="/players" element={<GetEveryPlayers isLoading={isLoading} setIsLoading={setIsLoading} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
+                    <Route path="/profile" element={<CurrentUserInfo isLoading={isLoading} setIsLoading={setIsLoading} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} />} />
+                </Routes>
             </div>
         </div>
     )

@@ -8,18 +8,13 @@ import Pagination from 'react-bootstrap/Pagination'
 function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPlayer, setComments }) {
     const [players, setPlayers] = useState([])
     const [offset, setOffset] = useState(0)
-
     const limit = 25
-
-
 
     useEffect(() => {
         setIsLoading(prev => !prev)
-        console.log(isLoading)
         fetch(`api/players?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
             setPlayers(data)
             setIsLoading(prev => !prev)
-            console.log(isLoading)
         })
     }, [offset])
 
@@ -32,11 +27,8 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
         );
     }
 
-
-
     const clickedByAssists = () => {
         setIsLoading(prev => !prev)
-        console.log(isLoading)
         fetch(`api/by_assists?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
             setPlayers(data)
             setIsLoading(prev => !prev)
@@ -44,25 +36,20 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
     }
     const clickedBySteals = () => {
         setIsLoading(prev => !prev)
-        console.log(isLoading)
         fetch(`api/by_steals?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
             setPlayers(data)
             setIsLoading(prev => !prev)
-            console.log(isLoading)
         })
     }
     const clickedByRebounds = () => {
         setIsLoading(prev => !prev)
-        console.log(isLoading)
         fetch(`api/by_rebounds?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
             setPlayers(data)
             setIsLoading(prev => !prev)
-            console.log(isLoading)
         })
     }
     const clickedByBlocks = () => {
         setIsLoading(prev => !prev)
-        console.log(isLoading)
         fetch(`api/by_blocks?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
             setPlayers(data)
             setIsLoading(prev => !prev)
@@ -74,7 +61,6 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
             setComments(data.comments)
             setSelectedPlayer(data)
             setClicked(prev => !prev)
-
             setIsLoading(prev => !prev)
         })
     }
@@ -102,7 +88,7 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
     return (
         <div className="player-table">
             <div className="next-prev-buttons">
-                <Pagination size="sm" className="manual-pagination">{items}</Pagination>
+                <pagination size="sm" className="manual-pagination">{items}</pagination>
             </div>
             {isLoading ? (<Player
                 autoplay
@@ -135,12 +121,16 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
                             <th><h3 onClick={clickedByRebounds}><strong>Rebounds per game</strong></h3></th>
                             <th><h3 onClick={clickedBySteals}><strong>Steals per game</strong></h3></th>
                             <th><h3 onClick={clickedByBlocks}><strong>Blocks per game</strong></h3></th>
+
                         </tr>
                     </thead>
+
                     <tbody>
                         {topPPGplayers}
                     </tbody>
+
                 </Table>
+
             )}
         </div>
     )

@@ -38,7 +38,9 @@ function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, cl
 
     const handleCloseCard = () => {
         setClicked(prev => !prev)
+        setCommentActivate(false)
     }
+
 
     return (
         <div className="each-card">
@@ -46,18 +48,17 @@ function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, cl
                 <Card className="the-card-it-self">
                     <CardMedia
                         component="img"
-                        image={player.imgURL}
-                        alt={player.name}
+                        image={player ? (player.imgURL) : ""}
+                        alt={player ? (player.name) : ""}
                         className="imgURL"
                     />
                     <div className="card-content">
                         <CardContent className="player-name">
                             <div className="name-college">
                                 <Typography gutterBottom variant="h2" >
-                                    <strong>{player.name}</strong><br /> College: <strong>{player.college}</strong>
+                                    <strong>{player && (player.name)}</strong><br /> College: <strong>{player && player.college}</strong>
                                 </Typography>
                             </div>
-
                             <div>
                                 <Box>
                                     <ul className="more-stats">
@@ -109,8 +110,7 @@ function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, cl
                     </div>
                 </div>
             }
-
-        </div >
+        </div>
     )
 }
 

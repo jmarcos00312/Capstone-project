@@ -9,11 +9,8 @@ function GetTeam({ setClicked, setSelectedPlayer, setComments, isLoading, setIsL
     const [playersOnTeam, setPlayersOnTeam] = useState([])
 
     const handleClickTeam = (e) => {
-        // setIsLoading(prev => !prev)
         fetch(`api/by_team/${e}`).then(r => r.json().then(data => {
             setPlayersOnTeam(data)
-            // console.log(data)
-            // setIsLoading(prev => !prev)
         }))
         console.log(playersOnTeam)
     }
@@ -23,7 +20,7 @@ function GetTeam({ setClicked, setSelectedPlayer, setComments, isLoading, setIsL
             setComments(data.comments)
             setSelectedPlayer(data)
             setClicked(true)
-            // setIsLoading(prev => !prev)
+            setIsLoading(false)
         })
 
 
@@ -54,13 +51,11 @@ function GetTeam({ setClicked, setSelectedPlayer, setComments, isLoading, setIsL
         )
     })
 
-    // const showImages = teams.map
-
 
     return (
         <div className="team-image-container">
             <div className="team-image">
-                    {eachTeams}
+                {eachTeams}
                 <div className="image-container">
                 </div>
                 {playersOnTeam.length > 0 &&

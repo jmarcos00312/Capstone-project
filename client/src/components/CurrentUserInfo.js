@@ -55,7 +55,7 @@ function CurrentUserInfo({ isLoading, setIsLoading, currentUser, userRoster, set
             }
             <UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />
 
-        </div >
+        </div>
     )
 }
 
