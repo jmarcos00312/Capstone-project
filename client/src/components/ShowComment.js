@@ -58,7 +58,7 @@ function ShowComment({ comments, currentUser, setComments }) {
     let everyComment = comments.reverse().map((comment) => {
         return (
             <Card className="every-single-comment">
-                <h1>{comment.get_player_user}</h1>
+                <h1>@{comment.get_player_user}</h1>
                 <Card.Text className="content">{comment.content}</Card.Text>
                 {
                     comment.user_id === currentUser.id ? (

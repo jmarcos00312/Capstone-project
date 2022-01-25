@@ -48,7 +48,6 @@
 }
 
 .player-table {
-
 }
 
 ul {
@@ -87,4 +86,9 @@ ul {
   background-color: #1d9bf0;
   border: 1px solid black;
   border-radius: 6px;
+}
+
+.pagi-item a:hover {
+  color: white;
+  background-color: #08263a;
 }
