@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './showComment.css'
 
 function Comment({ player, user_id, setComments, comments }) {
     const [commentForm, setCommentForm] = useState({

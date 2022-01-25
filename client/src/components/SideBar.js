@@ -37,6 +37,7 @@ function SideBar({ currentUser }) {
 
 
     return (
+
         <div className="sidebar">
             <div className="bg-image"></div>
             <div className="name-username">
@@ -63,9 +64,9 @@ function SideBar({ currentUser }) {
                         </div>
                         <div className="sideBar-awards-btn">
                             <div className="awardAndBtn">
-                            <h3 id="awards">Awards</h3>
-                            <button onClick={handleAwardClick}>
-                                ⌄
+                                <h3 id="awards">Awards</h3>
+                                <button onClick={handleAwardClick}>
+                                    ⌄
                                 </button>
                             </div>
                             {

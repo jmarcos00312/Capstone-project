@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card'
+import './showComment.css'
 
 
 function ShowComment({ comments, currentUser, setComments }) {
@@ -51,10 +52,9 @@ function ShowComment({ comments, currentUser, setComments }) {
     }
 
 
-    let everyComment
-        = comments.map((comment) => {
+    let everyComment= comments.reverse().map((comment) => {
             return (
-                <Card>
+                <Card className="every-single-comment">
                     <h1>{comment.get_player_user}</h1>
                     <Card.Text>{comment.content}</Card.Text>
                     {
@@ -69,13 +69,9 @@ function ShowComment({ comments, currentUser, setComments }) {
             )
         })
 
-
-
     return (
-        <div style={{ backgroundColor: 'pink' }}>
-
+        <div className="comment-list">
             {everyComment}
-
             {wantToUpdate &&
                 <form onSubmit={handleUpdate} className="update-book-form">
                     <h3>Update your comment</h3>

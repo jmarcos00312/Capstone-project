@@ -1,0 +1,71 @@
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 2000px;
+}
+
+.every-single-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  width: 400px;
+  border: 1px solid rgb(4, 58, 109);
+  border-radius: 5px 25px;
+  background-color: #182b3a;
+  background-image: linear-gradient(315deg, #182b3a 0%, #20a4f3 74%);
+  padding: 10px;
+}
+.every-single-comment div:nth-of-type(even) {
+  background-color: rgb(175, 173, 173);
+}
+
+.every-single-comment h1 {
+  background-color: black;
+  color: white;
+  padding: 10px 40px;
+  margin-top: 3px;
+  border-radius: 8px;
+  box-shadow: 3px -2px rgb(115, 119, 119);
+}
+
+.whole-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px;
+  align-items: center;
+  align-items: center;
+}
+
+.comments-to-separate {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-section {
+  width: 900px;
+  padding: 50px;
+}
+
+.comment-form {
+  margin-top: 15px;
+  border-radius: 10px;
+  width: 500px;
+  padding: 15px 40px;
+  background-color: #2b4162;
+  background-image: linear-gradient(315deg, #607088 0%, #12100e 74%);
+}
+.add-book-form {
+  color: white;
+}
+
+.add-book-form h3 {
+  color: white;
+  background-color: #182b3a;
+  background-image: linear-gradient(315deg, #182b3a 0%, #20a4f3 74%);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 3px -2px rgb(47, 48, 48);
+}

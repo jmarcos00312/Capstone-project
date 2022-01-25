@@ -7,7 +7,7 @@ import LoggedIn from './pages/LoggedIn';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
-
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     fetch("api/me", {
@@ -24,8 +24,7 @@ function App() {
 
   return (
     <div className="App">
-
-      {currentUser ? (<LoggedIn currentUser={currentUser} setCurrentUser={setCurrentUser} />)
+      {currentUser ? (<LoggedIn currentUser={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />)
         :
         (<LoginForm setCurrentUser={setCurrentUser} currentUser={currentUser} />
         )}

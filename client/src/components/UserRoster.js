@@ -29,7 +29,7 @@ function UserRoster({ userRoster, setUserRoster }) {
         )
     })
     return (
-        <div style={{ color: 'white' }} className="user-roster-table">
+        <div style={{ color: 'white', border: "2px solid white" }} className="user-roster-table">
             {usersTeam.length >= 1 ? (
                 <div className="user-roster-container">
                     <h1 style={{ color: 'white' }}>Your Roster</h1>

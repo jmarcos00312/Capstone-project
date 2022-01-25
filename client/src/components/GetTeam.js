@@ -5,19 +5,25 @@ import Table from 'react-bootstrap/Table'
 import { Player } from '@lottiefiles/react-lottie-player';
 
 
-function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUserRoster, userRoster, currentUser, selectedPlayer, clicked }) {
+function GetTeam({ setClicked, setSelectedPlayer, setComments, isLoading, setIsLoading }) {
     const [playersOnTeam, setPlayersOnTeam] = useState([])
 
     const handleClickTeam = (e) => {
+        // setIsLoading(prev => !prev)
         fetch(`api/by_team/${e}`).then(r => r.json().then(data => {
             setPlayersOnTeam(data)
+            // console.log(data)
+            // setIsLoading(prev => !prev)
         }))
+        console.log(playersOnTeam)
     }
     const handleMoreDetails = (e) => {
+        setIsLoading(prev => !prev)
         fetch(`api/players/${e}`).then(r => r.json()).then(data => {
             setComments(data.comments)
             setSelectedPlayer(data)
             setClicked(true)
+            // setIsLoading(prev => !prev)
         })
 
 
@@ -44,7 +50,6 @@ function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUser
         return (
             <button onClick={e => handleClickTeam(element.abbrev)}>
                 <img className="per-team" alt={element.name} src={element.imgURLSmall} />
-
             </button>
         )
     })
@@ -55,10 +60,9 @@ function GetTeam({ setClicked, setSelectedPlayer, comments, setComments, setUser
     return (
         <div className="team-image-container">
             <div className="team-image">
-                <div className="image-container">
                     {eachTeams}
+                <div className="image-container">
                 </div>
-                <br />
                 {playersOnTeam.length > 0 &&
                     <Table className="content-table">
                         <thead>

@@ -11,9 +11,10 @@ import { Routes, Route } from "react-router-dom";
 
 import CurrentUserInfo from "../components/CurrentUserInfo"
 import SideBar from '../components/SideBar'
+import { Player } from '@lottiefiles/react-lottie-player';
 
 
-function LoggedIn({ currentUser, setCurrentUser }) {
+function LoggedIn({ currentUser, setCurrentUser, isLoading, setIsLoading }) {
     const [selectedPlayer, setSelectedPlayer] = useState({})
     const [clicked, setClicked] = useState(false)
     const [comments, setComments] = useState([])
@@ -22,28 +23,35 @@ function LoggedIn({ currentUser, setCurrentUser }) {
 
 
     return (
-        <div className="LoggedIn-container">
+        <div className="wholeContainer">
             <Navbar setCurrentUser={setCurrentUser} />
-            <div className="wholeContainer">
-                <div className="sidebar-container">
-                    <SideBar currentUser={currentUser} />
-                </div>
-                <div className="main-container">
-                    <div className="player-details">
-                        {selectedPlayer && <PlayerCard setUserRoster={setUserRoster} userRoster={userRoster} currentUser={currentUser} selectedPlayer={selectedPlayer} clicked={clicked} setClicked={setClicked} comments={comments} setComments={setComments} />}
-                    </div>
-                    <Routes>
-                        <Route path="/teams" comments={comments} element={<GetTeam selectedPlayer={selectedPlayer} clicked={clicked} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
-                        <Route path="/players" element={<GetEveryPlayers setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
-                        <Route path="/profile" element={<CurrentUserInfo currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} />} />
-                        {/* <Route path="/contact-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} />
-                        <Route path="/about-me" element={<UserRoster userRoster={userRoster} setUserRoster={setUserRoster} currentUser={currentUser} />} /> */}
-                    </Routes>
-                </div>
+            <div className="sidebar-container">
+                <SideBar currentUser={currentUser} />
+            </div>
+            <div className="main-container">
+                <div className="player-details">
+                            {selectedPlayer && <PlayerCard
+                                isLoading={isLoading}
+                                setIsLoading={setIsLoading}
+                                setUserRoster={setUserRoster}
+                                userRoster={userRoster}
+                                currentUser={currentUser}
+                                selectedPlayer={selectedPlayer}
+                                clicked={clicked}
+                                setClicked={setClicked}
+                                comments={comments}
+                                setComments={setComments}
+                            />
+                            }
+                        </div>
+                <Routes>
+                            <Route path="/teams" element={<GetTeam comments={comments} isLoading={isLoading} setIsLoading={setIsLoading} selectedPlayer={selectedPlayer} clicked={clicked} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
+                            <Route path="/players" element={<GetEveryPlayers isLoading={isLoading} setIsLoading={setIsLoading} setComments={setComments} setSelectedPlayer={setSelectedPlayer} setClicked={setClicked} />} />
+                            <Route path="/profile" element={<CurrentUserInfo isLoading={isLoading} setIsLoading={setIsLoading} currentUser={currentUser} userRoster={userRoster} setUserRoster={setUserRoster} />} />
+                        </Routes>
             </div>
         </div>
     )
 }
-
 
 export default LoggedIn
