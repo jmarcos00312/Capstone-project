@@ -8,8 +8,8 @@ import Pagination from 'react-bootstrap/Pagination'
 function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPlayer, setComments }) {
     const [players, setPlayers] = useState([])
     const [offset, setOffset] = useState(0)
+    const [active, setActive] = useState(1)
     const limit = 25
-
     useEffect(() => {
         setIsLoading(prev => !prev)
         fetch(`api/players?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
@@ -18,13 +18,26 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
         })
     }, [offset])
 
+    const clickedPagination = (i) => {
+        setActive(i)
+        setOffset((i * limit) - 25)
+        console.log(i)
+
+    }
     let items = [];
     for (let i = 1; i <= 24; i++) {
         items.push(
-            <button key={i} onClick={(e) => setOffset((i * limit) - 25)}>
+            <Pagination.Item className="pagi-item" key={i} onClick={(e) => clickedPagination(i)} active={i === active}>
                 {i}
-            </button>,
+            </Pagination.Item>,
         );
+    }
+    const clickedByPoints = () => {
+        setIsLoading(prev => !prev)
+        fetch(`api/players?limit=${limit}&offset=${offset}`).then(r => r.json()).then(data => {
+            setPlayers(data)
+            setIsLoading(prev => !prev)
+        })
     }
 
     const clickedByAssists = () => {
@@ -88,7 +101,7 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
     return (
         <div className="player-table">
             <div className="next-prev-buttons">
-                <pagination size="sm" className="manual-pagination">{items}</pagination>
+                <Pagination size="sm" className="manual-pagination">{items}</Pagination>
             </div>
             {isLoading ? (<Player
                 autoplay
@@ -116,11 +129,11 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
                             <th><h3><strong>Position</strong></h3></th>
                             <th><h3><strong>Games Played</strong></h3></th>
                             <th><h3><strong>Minutes per game</strong></h3></th>
-                            <th><h3><strong>Points per game</strong></h3></th>
-                            <th><h3 onClick={clickedByAssists}><strong>Assists per game</strong></h3></th>
-                            <th><h3 onClick={clickedByRebounds}><strong>Rebounds per game</strong></h3></th>
-                            <th><h3 onClick={clickedBySteals}><strong>Steals per game</strong></h3></th>
-                            <th><h3 onClick={clickedByBlocks}><strong>Blocks per game</strong></h3></th>
+                            <th><h3 onClick={clickedByPoints} className="hoversort"><strong>Points per game</strong></h3></th>
+                            <th><h3 onClick={clickedByAssists} className="hoversort"><strong>Assists per game</strong></h3></th>
+                            <th><h3 onClick={clickedByRebounds} className="hoversort"><strong>Rebounds per game</strong></h3></th>
+                            <th><h3 onClick={clickedBySteals} className="hoversort"><strong>Steals per game</strong></h3></th>
+                            <th><h3 onClick={clickedByBlocks} className="hoversort"><strong>Blocks per game</strong></h3></th>
 
                         </tr>
                     </thead>
