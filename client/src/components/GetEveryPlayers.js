@@ -27,7 +27,7 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
     let items = [];
     for (let i = 1; i <= 24; i++) {
         items.push(
-            <Pagination.Item className="pagi-item" key={i} onClick={(e) => clickedPagination(i)} active={i === active}>
+            <Pagination.Item activeLabel="🏀" className="pagi-item" key={i} onClick={(e) => clickedPagination(i)} active={i === active}>
                 {i}
             </Pagination.Item>,
         );
