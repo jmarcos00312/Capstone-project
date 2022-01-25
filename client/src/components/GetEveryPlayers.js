@@ -60,8 +60,8 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
         fetch(`api/players/${e}`).then(r => r.json()).then(data => {
             setComments(data.comments)
             setSelectedPlayer(data)
-            setClicked(prev => !prev)
-            setIsLoading(prev => !prev)
+            setClicked(true)
+            setIsLoading(false)
         })
     }
 
