@@ -7,6 +7,7 @@ import {
     makeStyles,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { Player } from '@lottiefiles/react-lottie-player';
 
 
 const useStyles = makeStyles((theme) => ({

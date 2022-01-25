@@ -59,7 +59,7 @@ function ShowComment({ comments, currentUser, setComments }) {
         return (
             <Card className="every-single-comment">
                 <h1>{comment.get_player_user}</h1>
-                <Card.Text>{comment.content}</Card.Text>
+                <Card.Text className="content">{comment.content}</Card.Text>
                 {
                     comment.user_id === currentUser.id ? (
                         <div>

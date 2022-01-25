@@ -120,7 +120,7 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
                                     loop
                                     src="https://assets7.lottiefiles.com/packages/lf20_kfjqfnq9.json"
                                     style={{ height: '100px', width: '100px' }}
-                                    speed={1}
+                                    speed={.6}
                                 >
                                 </Player>
                             </th>

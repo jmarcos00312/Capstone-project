@@ -101,11 +101,11 @@ function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, cl
                 commentActivate &&
                 <div className="comments-to-separate">
                     <div className="whole-comments">
-                        <div className="comment-section">
-                            <ShowComment comments={comments} setComments={setComments} currentUser={currentUser} />
-                        </div>
                         <div className="comment-form">
                             <CommentForm player={selectedPlayer} user_id={currentUser.id} setComments={setComments} comments={comments} />
+                        </div>
+                        <div className="comment-section">
+                            <ShowComment comments={comments} setComments={setComments} currentUser={currentUser} />
                         </div>
                     </div>
                 </div>

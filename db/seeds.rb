@@ -43,7 +43,7 @@ end
 puts 'seeding teams'
 
 NbaTeam.create(name: 'Atlanta Hawks', team_abbr: 'ATL', imageURL: 'https://i.imgur.com/i1TZWrw.png')
-NbaTeam.create(name: 'Brooklyn Nets', team_abbr: 'BKN', imageURL:'ttps://i.imgur.com/lDrufi8.png')
+NbaTeam.create(name: 'Brooklyn Nets', team_abbr: 'BKN', imageURL:'https://i.imgur.com/lDrufi8.png')
 NbaTeam.create(name: 'Boston Celtics', team_abbr: 'BOS', imageURL:'https://i.imgur.com/dXFfRqJ.png')
 NbaTeam.create(name: 'Charlotte Hornets', team_abbr: 'CHA', imageURL:'https://i.imgur.com/hW7G08N.png')
 NbaTeam.create(name: 'Chicago Bulls', team_abbr: 'CHI', imageURL:'https://i.imgur.com/Nulx9UE.png')

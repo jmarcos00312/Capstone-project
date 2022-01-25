@@ -17,10 +17,12 @@ function CurrentUserInfo({ isLoading, setIsLoading, currentUser, userRoster, set
         fetch(`api/get_team_name/${currentUser.favorite_team}`).then(r => r.json().then(data => setTeamPic(data.imageURL)))
         setIsLoading(prev => !prev)
     }, [teamPic])
-
+    console.log(teamPic)
     const favoritePlayer = list.players.find(element => element.name === currentUser.favorite_player)
 
-    const stats = favoritePlayer.stats.at(-2)
+
+    const statOf2021 = favoritePlayer.stats.find(element => element.season === 2021)
+
     return (
         <div className="User-info">
             {isLoading ? ((<Player
@@ -33,6 +35,7 @@ function CurrentUserInfo({ isLoading, setIsLoading, currentUser, userRoster, set
             </Player>)) : (
                 <Card className="mb-2">
                     <Card.Img variant="top" src={favoritePlayer.imgURL} />
+
                     <Card.Body className="body-card">
                         <Card.Title> <h1 id="favorite">Favortie Player: {favoritePlayer.name}</h1></Card.Title>
                         <Card.Title> Position: <strong>{favoritePlayer.pos}</strong></Card.Title>
@@ -40,11 +43,11 @@ function CurrentUserInfo({ isLoading, setIsLoading, currentUser, userRoster, set
                         <div className="career-highs">
                             <h2>2021 Career Highs:</h2>
                             <div className="stats-2021">
-                                <h4>Points <br /> <strong>{stats.ptsMax[0]}</strong></h4>
-                                <h4>Assists <br /><strong>{stats.astMax[0]}</strong></h4>
-                                <h4>Rebounds <br /><strong>{stats.drbMax[0]}</strong></h4>
-                                <h4>Steals <br /><strong>{stats.stlMax[0]}</strong></h4>
-                                <h4>Blocks <br /><strong>{stats.blkMax[0]}</strong></h4>
+                                <h4>Points <br /> <strong>{statOf2021.ptsMax[0]}</strong></h4>
+                                <h4>Assists <br /><strong>{statOf2021.astMax[0]}</strong></h4>
+                                <h4>Rebounds <br /><strong>{statOf2021.drbMax[0]}</strong></h4>
+                                <h4>Steals <br /><strong>{statOf2021.stlMax[0]}</strong></h4>
+                                <h4>Blocks <br /><strong>{statOf2021.blkMax[0]}</strong></h4>
                             </div>
                         </div>
                         <Card.Text>
