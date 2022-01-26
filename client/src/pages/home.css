@@ -63,3 +63,34 @@
 .news-card {
   padding: 20px;
 }
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #e0beba;
+  padding: 30px;
+  border-radius: 30px;
+  font-size: 25px;
+}
+
+.intro strong {
+  font-size: 35px;
+}
+
+.intro {
+  color: #941802;
+}
+.strong {
+  padding: 5px;
+  background-color: rgb(48, 10, 8);
+  border-radius: 15px;
+  color: white;
+}
+
+.inspire,
+.explain,
+.made-with {
+  padding: 10px;
+  font-size: 20px;
+}

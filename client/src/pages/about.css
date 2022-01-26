@@ -1,0 +1,10 @@
+.about-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.about-page h1 {
+  font-size: 20px;
+}

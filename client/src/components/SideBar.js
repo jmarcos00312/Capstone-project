@@ -12,7 +12,6 @@ function SideBar({ currentUser }) {
     const [showPlayersOnTeam, setShowPlayersOnTeam] = useState(false)
     const [showTopPpg, setShowTopPpg] = useState(false)
     const [seeAwards, setSeeAwards] = useState(false)
-
     const favoritePlayer = list.players.find(element => element.name === currentUser.favorite_player)
 
     const handleAwardClick = () => {
@@ -28,6 +27,8 @@ function SideBar({ currentUser }) {
     const handlePlayersClick = () => {
         setShowTopPpg(prev => !prev)
     }
+    let pp = favoritePlayer.awards.filter((award, ind) => ind === favoritePlayer.awards.findIndex(index => index.type === award.type))
+    console.log(pp)
     const awards = favoritePlayer.awards.map(element => {
         return (
             <ListGroupItem className="every-awards">{element.season} : <strong>{element.type}</strong></ListGroupItem>
