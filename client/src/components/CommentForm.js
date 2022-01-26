@@ -26,6 +26,7 @@ function Comment({ player, user_id, setComments, comments }) {
         })
     }
 
+    
 
     return (
         <div className="comment">
