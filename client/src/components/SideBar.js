@@ -8,7 +8,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 
 function SideBar({ currentUser }) {
-    const [favteamPic, setFaveTeamPic] = useState('')
+    const [favteamPic, setFaveTeamPic] = useState({})
     const [showPlayersOnTeam, setShowPlayersOnTeam] = useState(false)
     const [showTopPpg, setShowTopPpg] = useState(false)
     const [seeAwards, setSeeAwards] = useState(false)
@@ -47,7 +47,7 @@ function SideBar({ currentUser }) {
                         <div className="usernamename">
                             <h3 id="username">@{currentUser.username}</h3>
                             <h2 id="name">{currentUser.first_name} {currentUser.last_name}</h2>
-                        </div>
+                        </div>  
                         <div className="favorite-team-info">
                             <h1>Favorite Team: <br /> {favteamPic.name}</h1>
                             <img src={favteamPic.imageURL} alt={favteamPic.name} />
