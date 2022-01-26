@@ -1,0 +1,113 @@
+.sidebar {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #1E1F21;
+  position: fixed;
+}
+
+.bg-image {
+  background-image: url("https://images.unsplash.com/photo-1570840584974-9078b1d976c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJhc2tldGJhbGwlMjBhcmVuYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
+  z-index: 0;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 30%;
+  width: 40vh;
+  height: 100vh;
+}
+#name,
+#username {
+  padding: 0;
+  margin-top: 35px;
+  font-size: 20px;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 70px;
+  width: 100%;
+  background-color: #572117;
+}
+
+.favorite-team-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 35px;
+  align-items: center;
+  border-radius: 10px;
+}
+.favorite-team-info img {
+  max-width: 300px;
+  max-width: 200px;
+}
+.name-username {
+  position: fixed;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 45px auto;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.usernamename {
+  display: inline-flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+.sideBar-awards-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.listgroup {
+  height: 500px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  margin-bottom: 105px;
+  height: 435px;
+}
+.listgroup::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: red;
+}
+.sideBar-awards-btn {
+  display: flex;
+  flex-direction: column;
+}
+.sideBar-awards-btn button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: xx-large;
+}
+#awards {
+  font-size: xx-large;
+  margin-bottom: 16px;
+}
+.awardAndBtn {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+}

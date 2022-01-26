@@ -11,6 +11,7 @@
   margin: 30px;
   font-size: 1.3em;
   min-width: 400px;
+  margin-top: 0px;
 }
 
 .content-table thead tr {
@@ -27,12 +28,12 @@
 .content-table tbody tr {
   border-bottom: 1px solid #dddddd;
 }
-
 .content-table tbody tr:nth-of-type(even) {
   background-color: rgb(175, 173, 173);
 }
 .content-table tbody tr:nth-of-type(odd) {
   color: rgb(175, 173, 173);
+  background-color: black;
 }
 .content-table button {
   margin-top: 15px;
@@ -44,4 +45,50 @@
 .footer-buttons {
   display: flex;
   justify-content: center;
+}
+
+.player-table {
+}
+
+ul {
+  color: white;
+  /* display: inline-flex; */
+}
+.manual-pagination {
+  min-width: 850px;
+  margin-top: 100px;
+  align-self: center;
+  text-decoration: none;
+  list-style: none;
+  display: inline-flex;
+  column-gap: 5px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+}
+
+.next-prev-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+.hoversort:hover {
+  background-color: grey;
+  color: #1e1e1e;
+  padding: 5px;
+}
+.hoversort {
+  padding: 5px;
+}
+
+.pagi-item a {
+  padding: 5px 13px;
+  background-color: #1d9bf0;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.pagi-item a:hover {
+  color: white;
+  background-color: #08263a;
 }

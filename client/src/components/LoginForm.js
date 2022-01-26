@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './LoginForm.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LoginForm({ currentUser, setCurrentUser }) {
+    const navigate = useNavigate()
     const classes = useStyles();
     const [logInForm, setLogInForm] = useState({
         username: "",
@@ -44,7 +45,10 @@ function LoginForm({ currentUser, setCurrentUser }) {
         };
         fetch("api/login", requestObj).then(r => {
             if (r.ok) {
-                r.json().then(user => setCurrentUser(user))
+                r.json().then(user => {
+                    setCurrentUser(user)
+                    navigate("/profile")
+                })
             } else {
                 r.json().then(errors => alert(errors.message))
             }
@@ -89,15 +93,15 @@ function LoginForm({ currentUser, setCurrentUser }) {
                             />
                         </div>
                         <p>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                            >
-                                Sign In
-                            </Button>
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                >
+                                    Sign In
+                                </Button>
                         </p>
                         <p>Don't have an account?</p>
                         <p>

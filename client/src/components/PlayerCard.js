@@ -11,10 +11,8 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CommentForm from './CommentForm'
 import ShowComment from './ShowComment';
 
-function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
+function PlayerCard({ userRoster, setUserRoster, currentUser, selectedPlayer, clicked, setClicked, comments, setComments }) {
     const [commentActivate, setCommentActivate] = useState(false)
-
-    const [liked, setLiked] = useState(false)
 
     let player = list.players.find(element => element.name === selectedPlayer.full_name);
 
@@ -22,23 +20,9 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments
         setCommentActivate(prev => !prev)
     }
 
-    const handleLikeClick = () => {
-        const configObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
-        };
-        fetch(`api/likes`, configObj).then(r => r.json().then(setLiked(true)))
-    }
-    const handleUnlikeClick = () => {
-        fetch(`api/likes`, { method: "DELETE" })
-    }
-
     const handleAddToRoster = (e) => {
         e.preventDefault()
-        console.log(e)
+        console.log(e.target)
         const configObj = {
             method: "POST",
             headers: {
@@ -46,62 +30,86 @@ function PlayerCard({ currentUser, selectedPlayer, clicked, setClicked, comments
             },
             body: JSON.stringify({ player_id: selectedPlayer.id, user_id: currentUser.id }),
         };
-        fetch("api/create_user_rosters", configObj).then(r => r.json()).then()
+
+        fetch("api/create_user_rosters", configObj).then(r => r.json()).then(data => {
+            setUserRoster([data, ...userRoster])
+        })
     }
 
     const handleCloseCard = () => {
         setClicked(prev => !prev)
-        setCommentActivate(prev => !prev)
+        setCommentActivate(false)
     }
 
 
     return (
         <div className="each-card">
             {clicked &&
-
-                <Card>
+                <Card className="the-card-it-self">
                     <CardMedia
                         component="img"
-                        image={player.imgURL}
-                        alt={player.name}
+                        image={player ? (player.imgURL) : ""}
+                        alt={player ? (player.name) : ""}
                         className="imgURL"
                     />
-                    <CardContent className="player-name">
-                        <Typography gutterBottom variant="h4" >
-                            <strong>{player.name}</strong><br /> College: {player.college}
-                        </Typography>
-
-                        <div>
-                            <Box>
-                                <ul className="more-stats">
-                                    <strong>More Stats</strong>
-                                    <br />
-                                    <br />
-                                    <li>Field goal percentage: <strong>{(selectedPlayer.fgp * 100).toFixed(2)}%</strong></li>
-                                    <li>3 point percentage: <strong>{(selectedPlayer.threePP * 100).toFixed(2)}%</strong></li>
-                                    <li>Free Throw percentage: <strong>{(selectedPlayer.ftp * 100).toFixed(2)}%</strong></li>
-                                    <li>Turnovers per game: <strong>{(selectedPlayer.tpg)}</strong></li>
-                                    <li>EFG: <strong>{(selectedPlayer.efg * 100).toFixed(2)}%</strong></li>
-                                </ul>
-                            </Box>
-                            <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                {liked ? <Button onClick={handleUnlikeClick}>Unlike</Button> : <Button onClick={handleLikeClick}>Like</Button>}
-                                <Button onClick={handleCloseCard}>close</Button>
-                                <Button onClick={showComment}>Comment</Button>
-                                <Button onClick={handleAddToRoster}>Add To Roster</Button>
-                            </ButtonGroup>
-                        </div>
-                    </CardContent>
+                    <div className="card-content">
+                        <CardContent className="player-name">
+                            <div className="name-college">
+                                <Typography gutterBottom variant="h2" >
+                                    <strong>{player && (player.name)}</strong><br /> College: <strong>{player && player.college}</strong>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Box>
+                                    <ul className="more-stats">
+                                        <strong>More Stats</strong>
+                                        <br />
+                                        <li>Field goal percentage: <strong>{(selectedPlayer.fgp * 100).toFixed(2)}%</strong></li>
+                                        <li>3 point percentage: <strong>{(selectedPlayer.threePP * 100).toFixed(2)}%</strong></li>
+                                        <li>Free Throw percentage: <strong>{(selectedPlayer.ftp * 100).toFixed(2)}%</strong></li>
+                                        <li>Turnovers per game: <strong>{(selectedPlayer.tpg)}</strong></li>
+                                        <li>EFG: <strong>{(selectedPlayer.efg * 100).toFixed(2)}%</strong></li>
+                                    </ul>
+                                </Box>
+                                <div className="button-group">
+                                    <ButtonGroup aria-label="outlined primary button group">
+                                        <Button style={{
+                                            border: "1px solid white",
+                                            backgroundColor: "red",
+                                            color: "white"
+                                        }}
+                                            onClick={handleCloseCard}
+                                            className="card-close-btn">close</Button>
+                                        <Button style={{
+                                            border: "1px solid white",
+                                            backgroundColor: "#1D9BF0",
+                                            color: "white"
+                                        }} onClick={showComment} className="card-comment-btn">Comment</Button>
+                                        <Button style={{
+                                            border: "1px solid white",
+                                            backgroundColor: "#38b000",
+                                            color: "white"
+                                        }} onClick={handleAddToRoster} className="card-add-btn">Add To Roster</Button>
+                                    </ButtonGroup>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </div>
                 </Card>
             }
             {
                 commentActivate &&
-                <div>
-                    <ShowComment comments={comments} setComments={setComments} currentUser={currentUser} />
-                    <CommentForm player={selectedPlayer} user_id={currentUser.id} setComments={setComments} comments={comments} />
+                <div className="comments-to-separate">
+                    <div className="whole-comments">
+                        <div className="comment-form">
+                            <CommentForm player={selectedPlayer} user_id={currentUser.id} setComments={setComments} comments={comments} />
+                        </div>
+                        <div className="comment-section">
+                            <ShowComment comments={comments} setComments={setComments} currentUser={currentUser} />
+                        </div>
+                    </div>
                 </div>
             }
-
         </div>
     )
 }

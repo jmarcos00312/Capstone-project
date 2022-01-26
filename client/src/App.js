@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import LoginFrom from "./components/LoginForm"
+import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import { Routes, Route } from "react-router-dom";
-import Profile from './pages/Profile';
+import LoggedIn from './pages/LoggedIn';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
-
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     fetch("api/me", {
@@ -15,7 +15,7 @@ function App() {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user);
+          setCurrentUser(user)
         });
       }
     });
@@ -24,23 +24,12 @@ function App() {
 
   return (
     <div className="App">
-      {currentUser ? (
-        <div>
-          <Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        </div>
-      ) : (
-        <div className="login-page">
-          <LoginFrom
-            setCurrentUser={setCurrentUser}
-            currentUser={currentUser}
-          />
-        </div>)}
+      {currentUser ? (<LoggedIn currentUser={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />)
+        :
+        (<LoginForm setCurrentUser={setCurrentUser} currentUser={currentUser} />
+        )}
       <Routes>
         <Route path="/signup" element={!currentUser && <SignupForm setCurrentUser={setCurrentUser} />} />
-        <Route path="/login" element={<LoginFrom
-          setCurrentUser={setCurrentUser}
-          currentUser={currentUser}
-        />} />
       </Routes>
     </div>
   );
