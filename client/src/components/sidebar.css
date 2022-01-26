@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   color: white;
-  background-color: #2E3B55;
+  background-color: #1E1F21;
   position: fixed;
 }
 
@@ -31,10 +31,9 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-height: 100px;
-  width: 98%;
-  margin-left: -7px;
-  background-color: #282626;
+  height: 70px;
+  width: 100%;
+  background-color: #572117;
 }
 
 .favorite-team-info {
@@ -56,7 +55,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 60px auto;
+  margin: 45px auto;
 }
 
 .userContainer {

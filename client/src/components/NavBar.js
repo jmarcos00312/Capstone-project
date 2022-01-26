@@ -7,14 +7,12 @@ import {
     makeStyles,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { Player } from '@lottiefiles/react-lottie-player';
 
 
 const useStyles = makeStyles((theme) => ({
     navlinks: {
         marginLeft: theme.spacing(10),
         display: "flex",
-        // backgroundColor: "black"
     },
     logo: {
         flexGrow: "1",
@@ -39,7 +37,7 @@ function NavBar({ setCurrentUser }) {
     }
     const classes = useStyles();
     return (
-        <AppBar position="fixed" style={{ background: '#2E3B55' }}>
+        <AppBar position="fixed" style={{ background: '#1E1F21' }}>
             <CssBaseline />
             <Toolbar>
                 <Typography variant="h4" className={classes.logo}>
