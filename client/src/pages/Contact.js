@@ -2,9 +2,7 @@ import React from 'react'
 
 
 
-
-
-function Hello() {
+function Contact() {
     return (
         <div>
             <h1>HELLO</h1>
@@ -12,4 +10,4 @@ function Hello() {
     )
 }
 
-export default Hello
+export default Contact

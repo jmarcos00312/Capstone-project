@@ -44,14 +44,8 @@ function NavBar({ setCurrentUser }) {
                     Web Basketball Association
                 </Typography>
                 <div className={classes.navlinks}>
-                    <Link to="/" className={classes.link}>
-                        Home
-                    </Link>
-                    <Link to="/about" className={classes.link}>
-                        About
-                    </Link>
-                    <Link to="/contact" className={classes.link}>
-                        Contact
+                    <Link to="/news" className={classes.link}>
+                        News
                     </Link>
                     <Link to="/logout" className={classes.link} onClick={handleLogout}>
                         Logout

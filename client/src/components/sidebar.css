@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   color: white;
-  background-color: #1E1F21;
+  background-color: #1e1f21;
   position: fixed;
 }
 
@@ -25,6 +25,9 @@
   padding: 0;
   margin-top: 35px;
   font-size: 20px;
+}
+#username {
+  letter-spacing: 1.5px;
 }
 
 .sidebar-header {
@@ -78,7 +81,7 @@
   align-items: center;
 }
 .listgroup {
-  height: 500px;
+  height: 450px;
   overflow: scroll;
   scroll-behavior: smooth;
   overflow-x: auto;
@@ -94,6 +97,7 @@
 .sideBar-awards-btn {
   display: flex;
   flex-direction: column;
+  height: 575px;
 }
 .sideBar-awards-btn button {
   background: none;
