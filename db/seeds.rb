@@ -1,6 +1,7 @@
 require 'csv'
 Player.destroy_all
 NbaTeam.destroy_all
+User.destroy_all
 
 puts 'seeding players'
 csv_text = File.read('lib/tasks/seed/twentyOne_players.csv')
@@ -74,6 +75,7 @@ NbaTeam.create(name: 'Utah Jazz', team_abbr: 'UTA', imageURL:'https://i.imgur.co
 NbaTeam.create(name: 'Washington Wizards', team_abbr: 'WAS', imageURL:'https://i.imgur.com/KAX48d0.png')
 
 puts 'creating users'
+
   User.create(
     first_name: 'Jeremiah',
     last_name: 'Marcos',
@@ -85,13 +87,14 @@ puts 'creating users'
     admin: true,
   )
 
-  User.create(
-    first_name: 'other',
-    last_name: 'user',
-    username: 'other_user',
-    password_digest: BCrypt::Password.create('jeremiah01'),
-    email: 'otherUser@gmail.com',
-    favorite_player: 'Devin Booker',
-    favorite_team: 'Portland Trail Blazers',
-    # byebug
-  )
+
+User.create(
+  first_name: 'other',
+  last_name: 'user',
+  username: 'other_user',
+  password_digest: BCrypt::Password.create('jeremiah01'),
+  email: 'otherUser@gmail.com',
+  favorite_player: 'Devin Booker',
+  favorite_team: 'Portland Trail Blazers',
+  # byebug
+)
