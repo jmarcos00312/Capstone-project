@@ -1,31 +1,26 @@
 class Api::PlayersController < ApplicationController
   def index
-    players =
-      Player.order(ppg: :desc).limit(params[:limit]).offset(params[:offset])
+    players = Player.order(ppg: :desc).limit(params[:limit]).offset(params[:offset])
     render json: players
   end
 
   def by_apg
-    players = Player.order(apg: :desc).first(15)
+    players = Player.order(apg: :desc).limit(params[:limit]).offset(params[:offset])
     render json: players
   end
   def by_rpg
-    players = Player.order(rpg: :desc).first(15)
+    players = Player.order(rpg: :desc).limit(params[:limit]).offset(params[:offset])
     render json: players
   end
-  def by_three_point_percentage
-    players =
-      Player
-        .order(threePP: :desc)
-        .where.not('threePP' => nil)
-        # .where("threePA >= 1")
-        .where('games >= 20')
+  def by_spg
+    players = Player.order(spg: :desc).limit(params[:limit]).offset(params[:offset])
     render json: players
   end
-  def by_efg
-    players = Player.order(efg: :desc).first(15)
+  def by_bpg
+    players = Player.order(bpg: :desc).limit(params[:limit]).offset(params[:offset])
     render json: players
   end
+
   def by_team
     players = Player.where(team: [params[:team]]).order(ppg: :desc)
     render json: players
@@ -85,9 +80,6 @@ class Api::PlayersController < ApplicationController
     render json: player
   end
 
-  def top_scorer
-    Player.order(ppg: :desc).first(15)
-  end
 
   private
 

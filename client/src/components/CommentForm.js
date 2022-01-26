@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './showComment.css'
 
 function Comment({ player, user_id, setComments, comments }) {
     const [commentForm, setCommentForm] = useState({
@@ -25,6 +26,7 @@ function Comment({ player, user_id, setComments, comments }) {
         })
     }
 
+    
 
     return (
         <div className="comment">
