@@ -103,8 +103,8 @@ function LoginForm({ currentUser, setCurrentUser }) {
                                     Sign In
                                 </Button>
                         </p>
-                        <p>Don't have an account?</p>
-                        <p>
+                        <p className="footer-question">Don't have an account?</p>
+                        <p className="footer-signup">
                             <Link to="/signup">Sign Up</Link>
                         </p>
                     </form>

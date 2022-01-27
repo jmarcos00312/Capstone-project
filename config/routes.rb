@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
     get '/me', to: 'users#me'
-
     get 'get_team_name/:name', to: 'nba_teams#team'
     get 'get_team/:team_abbr', to: 'nba_teams#show'
     get '/get_comments/:id', to: 'players#player_comments'

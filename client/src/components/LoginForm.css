@@ -23,6 +23,9 @@
 }
 
 .actual-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   height: 35em;
   width: 50vh;
 }
@@ -31,4 +34,21 @@
 }
 .password input {
   padding: 20px;
+}
+.footer-question,
+.footer-signup {
+  align-self: center;
+}
+
+.footer-signup {
+  border-radius: 10px;
+  align-self: center;
+  padding: 15px;
+  background-color: #3f51b5;
+  margin-bottom: 10px;
+}
+
+.footer-signup a {
+  color: white;
+  font-weight: bold;
 }
