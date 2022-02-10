@@ -19,9 +19,7 @@ function Get_every_players({ isLoading, setIsLoading, setClicked, setSelectedPla
     }, [offset])
 
     const clickedPagination = (i) => {
-        setActive(i)
         setOffset((i * limit) - 25)
-        console.log(i)
 
     }
     let items = [];
