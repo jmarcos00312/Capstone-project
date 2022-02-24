@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class UsersController < ApplicationController
   # skip_before_action :authenticate_user, only: %i[create me]
 
   def index
